@@ -1,0 +1,27 @@
+.curriculum-grid {
+    display: grid;
+    border: 2px solid whitesmoke;
+    margin: 5px 15px;
+    height: 100px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.curriculum-grid-filled {
+    background-color: orange;
+}
+
+.grid-context {
+    display: grid;
+    margin: 0px 10px;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.location {
+    font-style: italic;
+    color:rgb(93, 93, 93);
+}

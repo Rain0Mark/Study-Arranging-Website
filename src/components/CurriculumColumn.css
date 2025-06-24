@@ -1,4 +1,0 @@
-.curriculum-column {
-    display: grid;
-    grid-template-rows: repeat(1fr, 10);
-}
