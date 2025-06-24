@@ -61,6 +61,7 @@ function CurriculumPage({ editing }: Props) {
               newLecturer={newLecturer}
               newColor={newColor}
               day={i + 1}
+              editing={editing}
             />
           );
         })}
