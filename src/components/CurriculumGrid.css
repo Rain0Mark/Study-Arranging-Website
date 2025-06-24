@@ -1,0 +1,11 @@
+.curriculum-grid {
+    display: grid;
+    border: 2px solid black;
+    margin: 0.5px;
+    background-color: aqua;
+}
+
+.grid-context {
+    display: grid;
+    margin: 1px 1px;
+}
