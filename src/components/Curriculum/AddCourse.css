@@ -1,0 +1,31 @@
+.add-course {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.input-bar {
+  background-color: black;
+  height: 50px;
+  width: 400px;
+  border: none;
+  border-bottom: 3px solid white;
+  color:white;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.add-button {
+  background-color: red;
+  height: 70px;
+  width: 130px;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.input-color {
+    height: 50px;
+}

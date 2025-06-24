@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import CurriculumColumn from './CurriculumColumn';
 import './CurriculumPage.css';
+import AddCourse from './AddCourse';
 
-function CurriculumPage() {
+type Props = {
+  editing: boolean;
+};
+
+function CurriculumPage({ editing }: Props) {
   const [newName, setNewName] = useState('');
   const [newLocation, setNewLocation] = useState('');
   const [newLecturer, setNewLecturer] = useState('');
+  const [newColor, setNewColor] = useState('#ffa500');
   const courseTime: { start: string; end: string }[] = [
     { start: '08:10', end: '09:00' },
     { start: '09:10', end: '10:00' },
@@ -19,43 +25,26 @@ function CurriculumPage() {
     { start: '17:30', end: '18:20' },
   ];
 
-  function clearNewCourseInput() {
-    setNewName('');
-    setNewLocation('');
-    setNewLecturer('');
-  }
-
   return (
-    <div className="curriculum-page">
-      <div className="add-course">
-        <input
-          placeholder="course name"
-          onChange={(event) => {
-            setNewName(event.target.value);
-          }}
-          value={newName}
+    <>
+      {editing ? (
+        <AddCourse
+          newName={newName}
+          setNewName={setNewName}
+          newLocation={newLocation}
+          setNewLocation={setNewLocation}
+          newLecturer={newLecturer}
+          setNewLecturer={setNewLecturer}
+          setNewColor={setNewColor}
         />
-        <input
-          placeholder="location"
-          onChange={(event) => {
-            setNewLocation(event.target.value);
-          }}
-          value={newLocation}
-        />
-        <input
-          placeholder="lecturer"
-          onChange={(event) => {
-            setNewLecturer(event.target.value);
-          }}
-          value={newLecturer}
-        />
-        <button onClick={clearNewCourseInput}>Clear</button>
-      </div>
+      ) : (
+        <></>
+      )}
       <div className="curriculum-table">
         <div className="time">
           {courseTime.map((time, i) => {
             return (
-              <div className="time-grid">
+              <div key={i} className="time-grid">
                 <p className="time-number">{i + 1}</p>
                 <p className="time-a-class">{time.start}</p>
                 <p className="time-a-class">{time.end}</p>
@@ -70,12 +59,13 @@ function CurriculumPage() {
               newName={newName}
               newLocation={newLocation}
               newLecturer={newLecturer}
+              newColor={newColor}
               day={i + 1}
             />
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
 

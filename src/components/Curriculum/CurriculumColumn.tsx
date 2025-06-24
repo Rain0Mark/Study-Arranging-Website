@@ -6,6 +6,7 @@ type CurriculumColumnProps = {
   newName: string;
   newLocation: string;
   newLecturer: string;
+  newColor:string;
   day: number;
 };
 
@@ -13,6 +14,7 @@ function CurriculumColumn({
   newName,
   newLocation,
   newLecturer,
+  newColor,
   day,
 }: CurriculumColumnProps) {
   return (
@@ -24,6 +26,7 @@ function CurriculumColumn({
           newName={newName}
           newLocation={newLocation}
           newLecturer={newLecturer}
+          newColor={newColor}
         />
       ))}
     </div>

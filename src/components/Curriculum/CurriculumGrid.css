@@ -7,10 +7,6 @@
     cursor: pointer;
 }
 
-.curriculum-grid-filled {
-    background-color: orange;
-}
-
 .grid-context {
     display: grid;
     margin: 0px 10px;
