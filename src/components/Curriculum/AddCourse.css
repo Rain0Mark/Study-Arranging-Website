@@ -1,31 +1,69 @@
 .add-course {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  align-items: center;
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+  padding: 18px 24px;
+  gap: 16px;
+}
+
+.input-bar-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  margin-left: 0;
+  gap: 12px;
 }
 
 .input-bar {
-  background-color: black;
-  height: 50px;
-  width: 400px;
-  border: none;
-  border-bottom: 3px solid white;
-  color:white;
-  font-size: 30px;
-  margin-left: 10px;
+  background: #f1f5f9;
+  height: 44px;
+  flex: 1;
+  min-width: 0;
+  border: 1.5px solid #e0e7ef;
+  border-radius: 8px;
+  color: #222;
+  font-size: 20px;
+  margin-left: 0;
+  padding: 0 14px;
+  transition: border 0.2s;
+}
+.input-bar:focus {
+  border: 1.5px solid #2563eb;
+  outline: none;
 }
 
-.add-button {
-  background-color: red;
-  height: 70px;
-  width: 130px;
+.clear-button {
+  background: linear-gradient(90deg, #f87171 0%, #ef4444 100%);
+  color: #fff;
+  height: 48px;
+  width: 110px;
   border: none;
-  border-radius: 20px;
-  font-size: 20px;
+  border-radius: 12px;
+  font-size: 18px;
   font-weight: bold;
-  margin-right: 20px;
+  margin-right: 0;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.clear-button:hover {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.18);
 }
 
 .input-color {
-    height: 50px;
+  height: 44px;
+  width: 36px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #f1f5f9;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.08);
 }

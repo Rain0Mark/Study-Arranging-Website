@@ -1,30 +1,53 @@
 .curriculum-table {
-  display: flex;
-  width: 100%;
-  padding-top:20px;
+  display: grid;
+  grid-template-columns: 110px repeat(5, 1fr);
+  width: 96%;
+  margin: 32px auto 0 auto;
+  padding: 32px 24px 24px 24px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 32px rgba(37, 99, 235, 0.1);
+  gap: 0;
 }
 
 .time {
-  margin-top: 27px;
-  margin-left: 20px;
+  display: grid;
+  grid-template-rows: 48px repeat(10, 1fr);
+  margin: 0;
+  align-items: stretch;
+}
+
+.time-week-row {
+  height: 48px;
+  background: transparent;
 }
 
 .time-grid {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid white;
-  border-radius: 5px;
-  margin: 15px 1px;
-  background-color: white;
-  height: 100px;
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  margin: 0 0 8px 0;
+  background: #f1f5f9;
+  height: 90px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
+  justify-content: center;
+}
+
+.time-grid:last-child {
+  margin-bottom: 0;
 }
 
 .time-number {
   margin: 0px;
   font-weight: bold;
+  color: #2563eb;
+  font-size: 20px;
 }
 
 .time-a-class {
-  margin: 10px 5px;
+  margin: 6px 0;
+  color: #64748b;
+  font-size: 15px;
 }

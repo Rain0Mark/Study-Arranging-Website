@@ -42,6 +42,7 @@ function CurriculumPage({ editing }: Props) {
       )}
       <div className="curriculum-table">
         <div className="time">
+          <div className="time-week-row"></div> {/* 空白格，對齊星期 */}
           {courseTime.map((time, i) => {
             return (
               <div key={i} className="time-grid">

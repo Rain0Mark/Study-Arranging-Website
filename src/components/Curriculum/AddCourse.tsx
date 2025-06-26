@@ -27,30 +27,32 @@ function AddCourse({
 
   return (
     <div className="add-course">
-      <input
-        placeholder="course name"
-        className="input-bar"
-        onChange={(event) => {
-          setNewName(event.target.value);
-        }}
-        value={newName}
-      />
-      <input
-        placeholder="location"
-        className="input-bar"
-        onChange={(event) => {
-          setNewLocation(event.target.value);
-        }}
-        value={newLocation}
-      />
-      <input
-        placeholder="lecturer"
-        className="input-bar"
-        onChange={(event) => {
-          setNewLecturer(event.target.value);
-        }}
-        value={newLecturer}
-      />
+      <div className="input-bar-container">
+        <input
+          placeholder="course name"
+          className="input-bar"
+          onChange={(event) => {
+            setNewName(event.target.value);
+          }}
+          value={newName}
+        />
+        <input
+          placeholder="location"
+          className="input-bar"
+          onChange={(event) => {
+            setNewLocation(event.target.value);
+          }}
+          value={newLocation}
+        />
+        <input
+          placeholder="lecturer"
+          className="input-bar"
+          onChange={(event) => {
+            setNewLecturer(event.target.value);
+          }}
+          value={newLecturer}
+        />
+      </div>
       <input
         type="color"
         className='input-color'
@@ -58,7 +60,7 @@ function AddCourse({
           setNewColor(event.target.value);
         }}
       />
-      <button className="add-button" onClick={clearNewCourseInput}>
+      <button className="clear-button" onClick={clearNewCourseInput}>
         Clear
       </button>
     </div>
