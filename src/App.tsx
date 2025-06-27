@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TablePage from './components/Course/TablePage';
 import ListPage from './components/Course/ListPage';
 import Header from './components/Header';
@@ -25,6 +25,23 @@ function App() {
   >([]);
   const [chosenGrids, setChosenGrids] = useState<number[]>([]);
 
+  // 讀取 localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('courseList');
+    if (saved) {
+      try {
+        setCourseList(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to parse courseList from localStorage:', e);
+      }
+    }
+  }, []);
+
+  // 寫入 localStorage
+  useEffect(() => {
+    localStorage.setItem('courseList', JSON.stringify(courseList));
+  }, [courseList]);
+
   return (
     <>
       <Header
@@ -50,9 +67,10 @@ function App() {
           courseList={courseList}
           chosenGrids={chosenGrids}
           setChosenGrids={setChosenGrids}
+          editing={editing}
         />
       ) : (
-        <ListPage />
+        <ListPage courseList={courseList} />
       )}
     </>
   );

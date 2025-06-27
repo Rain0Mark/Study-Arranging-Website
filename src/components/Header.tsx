@@ -14,6 +14,9 @@ function Header({ editing, setEditing, showTable, setShowTable }: Props) {
   }
 
   function triggerShowTable() {
+    if (showTable) {
+      setEditing(false);
+    }
     setShowTable(!showTable);
   }
 

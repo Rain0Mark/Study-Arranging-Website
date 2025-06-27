@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { courseTime } from './CourseTime';
 import TableGrid from './TableGrid';
 import './TablePage.css';
@@ -14,53 +13,31 @@ type Props = {
   }[];
   chosenGrids: number[];
   setChosenGrids: (grids: number[]) => void;
+  editing: boolean;
 };
 
-function TablePage({ courseList, chosenGrids, setChosenGrids }: Props) {
-  const [grids, setGrids] = useState<
-    {
-      name: string;
-      location: string;
-      lecturer: string;
-      color: string;
-      id: string;
-    }[]
-  >(
-    Array.from({ length: 50 }).map(() => {
-      return {
-        name: '',
-        location: '',
-        lecturer: '',
-        color: '#ffffff',
-        id: '',
-      };
-    })
-  );
+function TablePage({ courseList, chosenGrids, setChosenGrids, editing }: Props) {
+  const grids = Array.from({ length: 50 }).map(() => ({
+    name: '',
+    location: '',
+    lecturer: '',
+    color: '#ffffff',
+    id: '',
+  }));
 
-  useEffect(() => {
-    const newGrids = Array.from({ length: 50 }).map(() => ({
-      name: '',
-      location: '',
-      lecturer: '',
-      color: '#ffffff',
-      id: '',
-    }));
-    courseList.forEach((course) => {
-      course.inGrids.forEach((gridIndex) => {
-        if (gridIndex >= 0 && gridIndex < newGrids.length) {
-          newGrids[gridIndex] = {
-            name: course.name,
-            location: course.location,
-            lecturer: course.lecturer,
-            color: course.color,
-            id: course.id,
-          };
-        }
-      });
+  courseList.forEach((course) => {
+    course.inGrids.forEach((gridIndex) => {
+      if (gridIndex >= 0 && gridIndex < grids.length) {
+        grids[gridIndex] = {
+          name: course.name,
+          location: course.location,
+          lecturer: course.lecturer,
+          color: course.color,
+          id: course.id,
+        };
+      }
     });
-    setGrids(newGrids);
-    
-  }, [courseList]);
+  });
 
   return (
     <div className="curriculum-table-fixed">
@@ -91,6 +68,7 @@ function TablePage({ courseList, chosenGrids, setChosenGrids }: Props) {
                   chosenGrids={chosenGrids}
                   setChosenGrids={setChosenGrids}
                   index={index}
+                  editing={editing}
                 />
               );
             })

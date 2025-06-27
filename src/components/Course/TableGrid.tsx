@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import './TableGrid.css';
 
 type Props = {
@@ -11,9 +12,17 @@ type Props = {
   chosenGrids: number[];
   setChosenGrids: (grids: number[]) => void;
   index: number;
+  editing: boolean;
 };
 
-function CurriculumGrid({ course, chosenGrids, setChosenGrids, index }: Props) {
+function CurriculumGrid({
+  course,
+  chosenGrids,
+  setChosenGrids,
+  index,
+  editing,
+}: Props) {
+  const navigate = useNavigate();
   function chosen() {
     const newChosenGrids = [...chosenGrids];
     if (chosenGrids.includes(index)) {
@@ -24,13 +33,19 @@ function CurriculumGrid({ course, chosenGrids, setChosenGrids, index }: Props) {
     setChosenGrids(newChosenGrids);
   }
 
+  function showClassDetails() {
+    if (course.id) {
+      navigate(`/${course.id}`);
+    }
+  }
+
   return (
     <div
       className={`curriculum-grid ${
         chosenGrids.includes(index) ? 'chosen' : ''
       }`}
       style={course.id ? {} : { backgroundColor: course.color }}
-      onClick={chosen}
+      onClick={editing ? chosen : showClassDetails}
     >
       {chosenGrids.includes(index) && (
         <div className="grid-tooltip">已選取</div>
