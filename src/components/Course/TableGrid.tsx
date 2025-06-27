@@ -1,0 +1,45 @@
+import './TableGrid.css';
+
+type Props = {
+  course: {
+    name: string;
+    location: string;
+    lecturer: string;
+    color: string;
+    id: string;
+  };
+  chosenGrids: number[];
+  setChosenGrids: (grids: number[]) => void;
+  index: number;
+};
+
+function CurriculumGrid({ course, chosenGrids, setChosenGrids, index }: Props) {
+  function chosen() {
+    const newChosenGrids = [...chosenGrids];
+    if (chosenGrids.includes(index)) {
+      newChosenGrids.splice(newChosenGrids.indexOf(index), 1);
+    } else {
+      newChosenGrids.push(index);
+    }
+    setChosenGrids(newChosenGrids);
+  }
+
+  return (
+    <div
+      className={`curriculum-grid ${
+        chosenGrids.includes(index) ? 'chosen' : ''
+      }`}
+      style={course.id ? {} : { backgroundColor: course.color }}
+      onClick={chosen}
+    >
+      {chosenGrids.includes(index) && (
+        <div className="grid-tooltip">已選取</div>
+      )}
+      <p className="grid-context name">{course.name}</p>
+      <p className="grid-context location">{course.location}</p>
+      <p className="grid-context lecturer">{course.lecturer}</p>
+    </div>
+  );
+}
+
+export default CurriculumGrid;
