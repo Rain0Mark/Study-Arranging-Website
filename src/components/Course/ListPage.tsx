@@ -23,7 +23,7 @@ function ListPage({ courseList }: Props) {
               className="list-item"
               key={index}
               style={{ backgroundColor: course.color, cursor: 'pointer' }}
-              onClick={() => course.id && navigate(`/${course.id}`)}
+              onClick={() => course.id && navigate(`/course/${course.id}`)}
             >
               <p className="list-item-name">{course.name}</p>
               <p className="list-item-location">{course.location}</p>

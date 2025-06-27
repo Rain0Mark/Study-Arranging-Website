@@ -22,22 +22,12 @@ function App() {
       inGrids: number[];
       id: string;
     }[]
-  >([]);
+  >(() => {
+    const saved = localStorage.getItem('courseList');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [chosenGrids, setChosenGrids] = useState<number[]>([]);
 
-  // 讀取 localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem('courseList');
-    if (saved) {
-      try {
-        setCourseList(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to parse courseList from localStorage:', e);
-      }
-    }
-  }, []);
-
-  // 寫入 localStorage
   useEffect(() => {
     localStorage.setItem('courseList', JSON.stringify(courseList));
   }, [courseList]);
@@ -49,6 +39,7 @@ function App() {
         setEditing={setEditing}
         showTable={showTable}
         setShowTable={setShowTable}
+        setChosenGrids={setChosenGrids}
       />
       {editing && (
         <div className="slide-down-panel">

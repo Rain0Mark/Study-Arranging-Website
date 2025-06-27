@@ -35,7 +35,7 @@ function CurriculumGrid({
 
   function showClassDetails() {
     if (course.id) {
-      navigate(`/${course.id}`);
+      navigate(`/course/${course.id}`);
     }
   }
 

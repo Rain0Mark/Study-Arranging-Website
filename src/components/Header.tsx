@@ -5,10 +5,14 @@ type Props = {
   setEditing: (newValue: boolean) => void;
   showTable: boolean;
   setShowTable: (newValue: boolean) => void;
+  setChosenGrids: (grids: number[]) => void;
 };
 
-function Header({ editing, setEditing, showTable, setShowTable }: Props) {
+function Header({ editing, setEditing, showTable, setShowTable, setChosenGrids }: Props) {
   function triggerEditing() {
+    if (editing) {
+      setChosenGrids([]);
+    }
     setEditing(!editing);
     setShowTable(true);
   }
