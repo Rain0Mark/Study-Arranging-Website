@@ -60,6 +60,7 @@ function CourseOverview() {
       <Header
         editing={editing}
         setEditing={setEditing}
+        showing={showing}
         setShowing={setShowing}
         setChosenGrids={setChosenGrids}
       />

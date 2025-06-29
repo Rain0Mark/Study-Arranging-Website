@@ -1,17 +1,27 @@
 import './Header.css';
+import { IoMdAddCircleOutline } from 'react-icons/io';
+import { ImCancelCircle } from 'react-icons/im';
 
 type Props = {
   editing: string;
   setEditing: (newValue: string) => void;
+  showing: string;
   setShowing: (newValue: string) => void;
   setChosenGrids: (grids: number[]) => void;
 };
 
-function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
+function Header({
+  editing,
+  setEditing,
+  showing,
+  setShowing,
+  setChosenGrids,
+}: Props) {
   return (
     <div className="header">
-      <div className="header-buttons">
+      <div className="header-button-container">
         <button
+          className={`table-button${showing === 'table' ? ' active' : ''}`}
           onClick={() => {
             setShowing('table');
             setEditing('none');
@@ -21,6 +31,7 @@ function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
           Table
         </button>
         <button
+          className={`list-button${showing === 'list' ? ' active' : ''}`}
           onClick={() => {
             setShowing('list');
             setEditing('none');
@@ -30,6 +41,7 @@ function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
           List
         </button>
         <button
+          className={`todo-button${showing === 'todo' ? ' active' : ''}`}
           onClick={() => {
             setShowing('todo');
             setEditing('none');
@@ -40,24 +52,50 @@ function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
         </button>
       </div>
       <p>Header</p>
-      <button
-        onClick={() => {
-          setEditing(editing === 'todo' ? 'none' : 'todo');
-          setShowing('todo');
-          setChosenGrids([]);
-        }}
-      >
-        Add Todo
-      </button>
-      <button
-        onClick={() => {
-          setEditing(editing === 'course' ? 'none' : 'course');
-          setShowing('table');
-          setChosenGrids([]);
-        }}
-      >
-        Edit Course
-      </button>
+      <div className="add-button-container">
+        <button
+          className={editing === 'todo' ? 'edit-button delete-button' : 'edit-button'}
+          onClick={() => {
+            setEditing(editing === 'todo' ? 'none' : 'todo');
+            setShowing('todo');
+            setChosenGrids([]);
+          }}
+        >
+          {editing === 'todo' ? (
+            <>
+              <ImCancelCircle />
+              <>Cancel</>
+            </>
+          ) : (
+            <>
+              <IoMdAddCircleOutline />
+              Add Todo
+            </>
+          )}
+        </button>
+        <button
+          className={
+            editing === 'course' ? 'edit-button delete-button' : 'edit-button'
+          }
+          onClick={() => {
+            setEditing(editing === 'course' ? 'none' : 'course');
+            setShowing('table');
+            setChosenGrids([]);
+          }}
+        >
+          {editing === 'course' ? (
+            <>
+              <ImCancelCircle />
+              <>Cancel</>
+            </>
+          ) : (
+            <>
+              <IoMdAddCircleOutline />
+              Add Todo
+            </>
+          )}
+        </button>
+      </div>
     </div>
   );
 }
