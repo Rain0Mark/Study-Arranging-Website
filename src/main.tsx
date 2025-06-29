@@ -7,7 +7,7 @@ import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/~b13902070/">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="course/:id" element={<CourseDetailWrapper />} />
