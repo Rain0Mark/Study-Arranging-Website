@@ -66,13 +66,17 @@ function EditCoursePage({
       return;
     }
 
+    const newDeletedCourseList = courseList.filter((course) => {
+      return !chosenGrids.some((grid) => course.inGrids.includes(grid));
+    });
+
     const course = {
       ...newCourse,
       inGrids: chosenGrids,
       id: crypto.randomUUID(),
     };
 
-    const newCourseList = [...courseList, course];
+    const newCourseList = [...newDeletedCourseList, course];
     setCourseList(newCourseList);
 
     clearNewCourseInput();

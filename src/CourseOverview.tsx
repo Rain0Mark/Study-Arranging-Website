@@ -76,7 +76,11 @@ function CourseOverview() {
           />
         </div>
       ) : editing === 'todo' ? (
-        <EditTodoPage todoList={todoList} setTodoList={setTodoList} courseList={courseList}/>
+        <EditTodoPage
+          todoList={todoList}
+          setTodoList={setTodoList}
+          courseList={courseList}
+        />
       ) : null}
 
       {showing === 'table' ? (

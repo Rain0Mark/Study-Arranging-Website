@@ -44,7 +44,7 @@ function CurriculumGrid({
       className={`curriculum-grid ${
         chosenGrids.includes(index) ? 'chosen' : ''
       }`}
-      style={course.id ? {} : { backgroundColor: course.color }}
+      style={{ backgroundColor: course.color }}
       onClick={editing === 'course' ? chosen : showClassDetails}
     >
       {chosenGrids.includes(index) && (
