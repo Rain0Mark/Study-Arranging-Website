@@ -1,6 +1,9 @@
 import './EditTodoPage.css';
 import { useState } from 'react';
-import { getTodayDateLocal, getTomorrowEndOfDayLocal } from '../../utils/date';
+import {
+  getTodayDateLocal,
+  getTomorrowEndOfDayLocal,
+} from '../../utils.tsx/date';
 
 type Props = {
   todoList: Array<{
@@ -33,7 +36,7 @@ type Props = {
 
 function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
   const [newTodo, setNewTodo] = useState({
-    subject: '',
+    subject: courseList[0].name || '',
     name: '',
     start: '',
     end: getTomorrowEndOfDayLocal(),
@@ -62,8 +65,9 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
   }
 
   return (
-    <>
+    <div className="edit-todo-container">
       <input
+        className="todo-name-input"
         placeholder="輸入名稱"
         onChange={(event) => {
           setNewTodo({ ...newTodo, name: event.target.value });
@@ -71,6 +75,7 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
         value={newTodo.name}
       />
       <select
+        className="todo-subject-select"
         value={newTodo.subject}
         onChange={(event) => {
           setNewTodo({ ...newTodo, subject: event.target.value });
@@ -83,6 +88,7 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
         ))}
       </select>
       <input
+        className="todo-time-input"
         type="datetime-local"
         placeholder="結束時間"
         value={newTodo.end}
@@ -90,8 +96,10 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
           setNewTodo({ ...newTodo, end: event.target.value });
         }}
       />
-      <button onClick={addNewTodo}>新增待辦事項</button>
-    </>
+      <button className="todo-add-button" onClick={addNewTodo}>
+        新增待辦事項
+      </button>
+    </div>
   );
 }
 

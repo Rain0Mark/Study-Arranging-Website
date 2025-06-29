@@ -1,3 +1,4 @@
+import TodoGrid from './TodoGrid';
 import './TodoPage.css';
 
 type Props = {
@@ -13,16 +14,23 @@ type Props = {
 function TodoPage({ todoList }: Props) {
   return (
     <div className="todo-page">
-      <h1>待辦事項</h1>
+      <h1 className="heading">待辦事項</h1>
       {todoList.length === 0 ? (
         <p>目前沒有待辦事項。</p>
       ) : (
         <div className="todo-list">
-          {todoList.map((todo) => (
-            <p key={todo.id}>
-              <strong>{todo.subject}:</strong> {todo.name} (從 {todo.start} 到 {todo.end})
-            </p>
-          ))}
+          {todoList.map((todo) => {
+            return (
+              <div key={todo.id} className="todo-item">
+                <TodoGrid
+                  name={todo.name}
+                  subject={todo.subject}
+                  start={todo.start}
+                  end={todo.end}
+                />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
