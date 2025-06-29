@@ -1,44 +1,62 @@
 import './Header.css';
 
 type Props = {
-  editing: boolean;
-  setEditing: (newValue: boolean) => void;
-  showTable: boolean;
-  setShowTable: (newValue: boolean) => void;
+  editing: string;
+  setEditing: (newValue: string) => void;
+  setShowing: (newValue: string) => void;
   setChosenGrids: (grids: number[]) => void;
 };
 
-function Header({ editing, setEditing, showTable, setShowTable, setChosenGrids }: Props) {
-  function triggerEditing() {
-    if (editing) {
-      setChosenGrids([]);
-    }
-    setEditing(!editing);
-    setShowTable(true);
-  }
-
-  function triggerShowTable() {
-    if (showTable) {
-      setEditing(false);
-    }
-    setShowTable(!showTable);
-  }
-
+function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
   return (
     <div className="header">
-      <button className="header-button" onClick={triggerShowTable}>
-        {showTable ? 'Show List' : 'Show Table'}
-      </button>
+      <div className="header-buttons">
+        <button
+          onClick={() => {
+            setShowing('table');
+            setEditing('none');
+            setChosenGrids([]);
+          }}
+        >
+          Table
+        </button>
+        <button
+          onClick={() => {
+            setShowing('list');
+            setEditing('none');
+            setChosenGrids([]);
+          }}
+        >
+          List
+        </button>
+        <button
+          onClick={() => {
+            setShowing('todo');
+            setEditing('none');
+            setChosenGrids([]);
+          }}
+        >
+          Todo
+        </button>
+      </div>
       <p>Header</p>
       <button
-        className={
-          editing
-            ? 'header-button edit-button editing'
-            : 'header-button edit-button'
-        }
-        onClick={triggerEditing}
+        onClick={() => {
+          setEditing(editing === 'todo' ? 'none' : 'todo');
+          setShowing('todo');
+          setChosenGrids([]);
+        }}
       >
-        {editing ? 'Cancel' : 'Edit Course'}
+        Add Todo
+      </button>
+      <button
+        onClick={() => {
+          setEditing(editing === 'course' ? 'none' : 'course');
+          setShowing('table');
+          setChosenGrids([]);
+        }}
+      >
+        Edit Course
       </button>
     </div>
   );

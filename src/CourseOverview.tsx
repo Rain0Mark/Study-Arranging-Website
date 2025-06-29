@@ -1,12 +1,35 @@
 import { useState, useEffect } from 'react';
-import TablePage from './components/Course/TablePage';
-import ListPage from './components/Course/ListPage';
+import { useOutletContext } from 'react-router';
+import TablePage from './components/Courses/TablePage';
+import ListPage from './components/Courses/ListPage';
 import Header from './components/Header';
-import EditPage from './components/Course/EditPage';
+import EditCoursePage from './components/Courses/EditCoursePage';
+import EditTodoPage from './components/Courses/EditTodoPage';
+import TodoPage from './components/Courses/TodoPage';
 
-function App() {
-  const [editing, setEditing] = useState(false);
-  const [showTable, setShowTable] = useState(true);
+function CourseOverview() {
+  const { todoList, setTodoList } = useOutletContext<{
+    todoList: {
+      id: string;
+      subject: string;
+      name: string;
+      start: string;
+      end: string;
+    }[];
+    setTodoList: React.Dispatch<
+      React.SetStateAction<
+        {
+          id: string;
+          subject: string;
+          name: string;
+          start: string;
+          end: string;
+        }[]
+      >
+    >;
+  }>();
+  const [showing, setShowing] = useState('table');
+  const [editing, setEditing] = useState('none');
   const [newCourse, setNewCourse] = useState({
     name: '',
     location: '',
@@ -37,13 +60,13 @@ function App() {
       <Header
         editing={editing}
         setEditing={setEditing}
-        showTable={showTable}
-        setShowTable={setShowTable}
+        setShowing={setShowing}
         setChosenGrids={setChosenGrids}
       />
-      {editing && (
+
+      {editing === 'course' ? (
         <div className="slide-down-panel">
-          <EditPage
+          <EditCoursePage
             newCourse={newCourse}
             setNewCourse={setNewCourse}
             courseList={courseList}
@@ -52,19 +75,24 @@ function App() {
             setChosenGrids={setChosenGrids}
           />
         </div>
-      )}
-      {showTable ? (
+      ) : editing === 'todo' ? (
+        <EditTodoPage todoList={todoList} setTodoList={setTodoList} courseList={courseList}/>
+      ) : null}
+
+      {showing === 'table' ? (
         <TablePage
           courseList={courseList}
           chosenGrids={chosenGrids}
           setChosenGrids={setChosenGrids}
           editing={editing}
         />
-      ) : (
+      ) : showing === 'list' ? (
         <ListPage courseList={courseList} />
-      )}
+      ) : showing === 'todo' ? (
+        <TodoPage todoList={todoList} />
+      ) : null}
     </>
   );
 }
 
-export default App;
+export default CourseOverview;

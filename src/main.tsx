@@ -1,16 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import CourseDetailWrapper from './components/Course/CourseDetailWrapper.tsx';
+import TodoListLayout from './components/TodoListLayout.tsx';
+import CourseOverview from './CourseOverview.tsx';
+import CoursePageWrapper from './components/CoursePage/CoursePageWrapper.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter basename="/~b13902070/">
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="course/:id" element={<CourseDetailWrapper />} />
+        <Route path="/" element={<TodoListLayout />}>
+          <Route path="/" element={<CourseOverview />} />
+          <Route path="course/:id" element={<CoursePageWrapper />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>
