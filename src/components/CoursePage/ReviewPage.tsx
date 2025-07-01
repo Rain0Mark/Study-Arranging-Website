@@ -1,6 +1,5 @@
 import ReviewBar from './ReviewBar';
 import ReviewBarDone from './ReviewBarDone';
-import './ReviewPage.css';
 
 type Props = {
   reviewList: {
@@ -29,14 +28,14 @@ function ReviewPage({ reviewList, setReviewList }: Props) {
   const reviewListNotDone = reviewList.filter((review) => !review.done);
   const reviewListDone = reviewList.filter((review) => review.done);
   return (
-    <div className="review-page-container">
+    <div>
       <h1>未完成事項</h1>
-      <div className="review-not-done-tag">
+      <div>
         <p>範圍</p>
         <p>死線</p>
         <p>備注</p>
       </div>
-      <div className="review-not-done">
+      <div>
         {reviewListNotDone.map((review) => {
           return (
             <ReviewBar
@@ -48,12 +47,12 @@ function ReviewPage({ reviewList, setReviewList }: Props) {
         })}
       </div>
       <h1>已完成事項</h1>
-      <div className="review-done-tag">
+      <div>
         <p>範圍</p>
         <p>完成日期</p>
         <p>備注</p>
       </div>
-      <div className="review-done">
+      <div>
         {reviewListDone
           .slice()
           .reverse()

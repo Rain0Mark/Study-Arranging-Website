@@ -1,6 +1,5 @@
 import { courseTime } from './CourseTime';
 import TableGrid from './TableGrid';
-import './TablePage.css';
 
 type Props = {
   courseList: {
@@ -16,7 +15,12 @@ type Props = {
   editing: string;
 };
 
-function TablePage({ courseList, chosenGrids, setChosenGrids, editing }: Props) {
+function TablePage({
+  courseList,
+  chosenGrids,
+  setChosenGrids,
+  editing,
+}: Props) {
   const grids = Array.from({ length: 50 }).map(() => ({
     name: '',
     location: '',
@@ -40,24 +44,23 @@ function TablePage({ courseList, chosenGrids, setChosenGrids, editing }: Props) 
   });
 
   return (
-    <div className="curriculum-table-fixed">
-      <div className="time-fixed">
-        <div className="time-week-row-fixed"></div> {/* 空白格，對齊星期 */}
+    <div>
+      <div>
         {courseTime.map((time, i) => (
-          <div key={i} className="time-grid-fixed">
-            <p className="time-number">{i + 1}</p>
-            <p className="time-a-class">{time.start}</p>
-            <p className="time-a-class">{time.end}</p>
+          <div key={i}>
+            <p>{i + 1}</p>
+            <p>{time.start}</p>
+            <p>{time.end}</p>
           </div>
         ))}
       </div>
-      <div className="table-main-area">
-        <div className="week-row">
+      <div>
+        <div>
           {['一', '二', '三', '四', '五'].map((w, i) => (
-            <div className="week-title" key={i}>{`星期${w}`}</div>
+            <div key={i}>{`星期${w}`}</div>
           ))}
         </div>
-        <div className="table-grid-wrapper-fixed">
+        <div>
           {Array.from({ length: 10 }).map((_, row) =>
             Array.from({ length: 5 }).map((_, col) => {
               const index = row * 5 + col;

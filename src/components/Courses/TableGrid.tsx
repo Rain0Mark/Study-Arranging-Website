@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router';
-import './TableGrid.css';
 
 type Props = {
   course: {
@@ -41,18 +40,14 @@ function CurriculumGrid({
 
   return (
     <div
-      className={`curriculum-grid ${
-        chosenGrids.includes(index) ? 'chosen' : ''
-      }`}
-      style={{ backgroundColor: course.color }}
       onClick={editing === 'course' ? chosen : showClassDetails}
     >
       {chosenGrids.includes(index) && (
-        <div className="grid-tooltip">已選取</div>
+        <div>已選取</div>
       )}
-      <p className="grid-context name">{course.name}</p>
-      <p className="grid-context location">{course.location}</p>
-      <p className="grid-context lecturer">{course.lecturer}</p>
+      <p>{course.name}</p>
+      <p>{course.location}</p>
+      <p>{course.lecturer}</p>
     </div>
   );
 }

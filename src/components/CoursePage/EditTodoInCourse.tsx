@@ -61,9 +61,8 @@ function EditTodoInCourse({ courseName, todoList, setTodoList }: Props) {
     });
   }
   return (
-    <div className="edit-todo-container">
+    <div>
       <input
-        className="todo-name-input"
         placeholder="輸入名稱"
         onChange={(event) => {
           setNewTodo({ ...newTodo, name: event.target.value });
@@ -71,7 +70,6 @@ function EditTodoInCourse({ courseName, todoList, setTodoList }: Props) {
         value={newTodo.name}
       />
       <input
-        className="todo-time-input"
         type="datetime-local"
         placeholder="結束時間"
         value={newTodo.end}
@@ -79,9 +77,7 @@ function EditTodoInCourse({ courseName, todoList, setTodoList }: Props) {
           setNewTodo({ ...newTodo, end: event.target.value });
         }}
       />
-      <button className="todo-add-button" onClick={addNewTodo}>
-        新增待辦事項
-      </button>
+      <button onClick={addNewTodo}>新增待辦事項</button>
     </div>
   );
 }

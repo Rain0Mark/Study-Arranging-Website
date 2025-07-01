@@ -1,5 +1,3 @@
-import './ReviewBarDone.css';
-
 type Props = {
   review: {
     name: string;
@@ -33,11 +31,11 @@ function ReviewBarDone({ review, setReviewList }: Props) {
   };
 
   return (
-    <div className="review-bar-done">
+    <div>
       <input type="checkbox" checked={review.done} onChange={toggleDone} />
-      <p className="review-bar-done-name">{review.name}</p>
-      <p className="review-bar-done-end">{review.end}</p>
-      <p className="review-bar-done-tag">{review.tag}</p>
+      <p>{review.name}</p>
+      <p>{review.end}</p>
+      <p>{review.tag}</p>
     </div>
   );
 }

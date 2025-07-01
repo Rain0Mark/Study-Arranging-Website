@@ -1,5 +1,3 @@
-import './EditCoursePage.css';
-
 type Props = {
   newCourse: {
     name: string;
@@ -96,11 +94,10 @@ function EditCoursePage({
   }
 
   return (
-    <div className="add-course">
-      <div className="input-bar-container">
+    <div>
+      <div>
         <input
           placeholder="course name"
-          className="input-bar"
           onChange={(event) => {
             setNewCourse({
               ...newCourse,
@@ -111,7 +108,6 @@ function EditCoursePage({
         />
         <input
           placeholder="location"
-          className="input-bar"
           onChange={(event) => {
             setNewCourse({
               ...newCourse,
@@ -122,7 +118,6 @@ function EditCoursePage({
         />
         <input
           placeholder="lecturer"
-          className="input-bar"
           onChange={(event) => {
             setNewCourse({
               ...newCourse,
@@ -134,7 +129,6 @@ function EditCoursePage({
       </div>
       <input
         type="color"
-        className="input-color"
         onChange={(event) => {
           setNewCourse({
             ...newCourse,
@@ -143,13 +137,13 @@ function EditCoursePage({
         }}
         value={newCourse.color}
       />
-      <button className="add-button" onClick={addCourse}>
+      <button onClick={addCourse}>
         Add
       </button>
-      <button className="clear-button" onClick={clearNewCourseInput}>
+      <button onClick={clearNewCourseInput}>
         Clear
       </button>
-      <button className="delete-button" onClick={deleteCourse}>
+      <button onClick={deleteCourse}>
         delete
       </button>
     </div>

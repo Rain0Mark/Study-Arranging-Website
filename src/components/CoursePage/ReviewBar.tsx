@@ -1,4 +1,3 @@
-import './ReviewBar.css';
 import dayjs from 'dayjs';
 
 type Props = {
@@ -34,11 +33,11 @@ function ReviewBar({ review, setReviewList }: Props) {
   };
 
   return (
-    <div className="review-bar">
+    <div>
       <input type="checkbox" checked={review.done} onChange={toggleDone} />
-      <p className="review-name">{review.name}</p>
-      <p className="review-due">{review.due}</p>
-      <p className="review-tag">{review.tag}</p>
+      <p>{review.name}</p>
+      <p>{review.due}</p>
+      <p>{review.tag}</p>
     </div>
   );
 }

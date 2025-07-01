@@ -47,9 +47,8 @@ function EditGradePage({ gradeList, setGradeList }: Props) {
   }
 
   return (
-    <div className="edit-grade-page-container">
+    <div>
       <input
-        className="grade-name-input"
         placeholder="輸入名稱"
         onChange={(event) => {
           setNewGrade({ ...newGrade, name: event.target.value });
@@ -57,17 +56,14 @@ function EditGradePage({ gradeList, setGradeList }: Props) {
         value={newGrade.name}
       />
       <input
-        className="grade-percent-input"
-        type='number'
+        type="number"
         placeholder="輸入佔比"
         value={newGrade.percent}
         onChange={(event) => {
           setNewGrade({ ...newGrade, percent: Number(event.target.value) });
         }}
       />
-      <button className="grade-add-button" onClick={addNewGrade}>
-        新增複習進度
-      </button>
+      <button onClick={addNewGrade}>新增複習進度</button>
     </div>
   );
 }

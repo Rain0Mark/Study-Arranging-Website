@@ -28,7 +28,7 @@ function GradeBar({ grade, setGradeList }: Props) {
   }
 
   return (
-    <div className="grade-bar">
+    <div>
       <p>{grade.name}</p>
       <p>{grade.percent}</p>
       <input

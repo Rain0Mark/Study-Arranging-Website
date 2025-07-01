@@ -1,5 +1,4 @@
 import TodoGrid from '../Courses/TodoGrid';
-import './TodoInCoursePage.css';
 
 type Props = {
   course: {
@@ -36,10 +35,10 @@ function TodoInCoursePage({ course, todoList, setTodoList }: Props) {
   });
 
   return (
-    <div className="todo-list-page">
+    <div>
       {todoListInCourse.map((todo) => {
         return (
-          <div key={todo.id} className="todo-item">
+          <div key={todo.id}>
             <TodoGrid
               name={todo.name}
               subject={todo.subject}

@@ -60,13 +60,12 @@ function CourseOverview() {
       <Header
         editing={editing}
         setEditing={setEditing}
-        showing={showing}
         setShowing={setShowing}
         setChosenGrids={setChosenGrids}
       />
 
       {editing === 'course' ? (
-        <div className="slide-down-panel">
+        <div>
           <EditCoursePage
             newCourse={newCourse}
             setNewCourse={setNewCourse}

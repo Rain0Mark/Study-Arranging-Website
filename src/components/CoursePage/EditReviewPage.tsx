@@ -66,9 +66,8 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
   }
 
   return (
-    <div className="edit-review-container">
+    <div>
       <input
-        className="review-name-input"
         placeholder="輸入名稱"
         onChange={(event) => {
           setNewReview({ ...newReview, name: event.target.value });
@@ -76,7 +75,6 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
         value={newReview.name}
       />
       <input
-        className="review-time-input"
         type="date"
         placeholder="死線"
         value={newReview.due}
@@ -85,16 +83,13 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
         }}
       />
       <input
-        className="review-tag-input"
         placeholder="備註事項"
         value={newReview.tag}
         onChange={(event) => {
           setNewReview({ ...newReview, tag: event.target.value });
         }}
       />
-      <button className="todo-add-button" onClick={addNewReview}>
-        新增複習進度
-      </button>
+      <button onClick={addNewReview}>新增複習進度</button>
     </div>
   );
 }

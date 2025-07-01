@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client';
 import TodoListLayout from './components/TodoListLayout.tsx';
 import CourseOverview from './CourseOverview.tsx';
 import CoursePageWrapper from './components/CoursePage/CoursePageWrapper.tsx';
-import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -27,7 +27,7 @@ function GradePage({ gradeList, setGradeList }: Props) {
   return (
     <>
       <h1>Total Grade {(totalGradeTimes10000 / 10000).toFixed(2)}</h1>
-      <div className="grade-page-tag">
+      <div>
         <p>名稱</p>
         <p>佔比</p>
         <p>成績</p>

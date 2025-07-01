@@ -1,4 +1,3 @@
-import './EditTodoPage.css';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import {
@@ -71,9 +70,8 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
   }
 
   return (
-    <div className="edit-todo-container">
+    <div>
       <input
-        className="todo-name-input"
         placeholder="輸入名稱"
         onChange={(event) => {
           setNewTodo({ ...newTodo, name: event.target.value });
@@ -81,7 +79,6 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
         value={newTodo.name}
       />
       <select
-        className="todo-subject-select"
         value={newTodo.subject}
         onChange={(event) => {
           setNewTodo({ ...newTodo, subject: event.target.value });
@@ -94,7 +91,6 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
         ))}
       </select>
       <input
-        className="todo-time-input"
         type="datetime-local"
         placeholder="結束時間"
         value={newTodo.end}
@@ -102,9 +98,7 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
           setNewTodo({ ...newTodo, end: event.target.value });
         }}
       />
-      <button className="todo-add-button" onClick={addNewTodo}>
-        新增待辦事項
-      </button>
+      <button onClick={addNewTodo}>新增待辦事項</button>
     </div>
   );
 }

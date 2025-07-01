@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
-import './CoursePage.css';
 import TodoListPage from './TodoInCoursePage.tsx';
 import ReviewPage from './ReviewPage.tsx';
 import GradePage from './GradePage.tsx';
@@ -63,12 +62,11 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
   >([]);
 
   const navigate = useNavigate();
-  if (!course)
-    return <div style={{ padding: 32 }}>404 Not Found 找不到課程</div>;
+  if (!course) return <div>404 Not Found 找不到課程</div>;
 
   return (
-    <div className="course-page">
-      <div className="course-page-header">
+    <div>
+      <div>
         <button
           onClick={() => {
             navigate(`/`);
@@ -76,15 +74,12 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
         >
           回到首頁
         </button>
-        <div
-          className="course-detail-container"
-          style={{ background: course.color }}
-        >
+        <div>
           <h2>{course.name}</h2>
           <p>地點：{course.location}</p>
           <p>老師：{course.lecturer}</p>
         </div>
-        <div className="show-page-buttons">
+        <div>
           <button
             onClick={() => {
               setShowing('todo');
@@ -110,7 +105,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
             成績
           </button>
         </div>
-        <div className="course-add-button">
+        <div>
           <button
             onClick={() => {
               setEditing(editing === 'todo' ? 'none' : 'todo');
@@ -147,7 +142,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       ) : editing === 'review' ? (
         <EditReviewPage reviewList={reviewList} setReviewList={setReviewList} />
       ) : editing === 'grade' ? (
-        <EditGradePage gradeList={gradeList} setGradeList={setGradeList}/>
+        <EditGradePage gradeList={gradeList} setGradeList={setGradeList} />
       ) : null}
 
       {showing === 'todo' ? (

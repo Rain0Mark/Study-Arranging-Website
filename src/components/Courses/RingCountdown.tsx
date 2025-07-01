@@ -23,7 +23,7 @@ function RingCountdown({ percent, children }: Props) {
   console.log(percent);
 
   return (
-    <div style={{ position: 'relative', width: 300, height: 300, display: 'inline-block', margin:8 }}>
+    <div>
       <svg width="300" height="300">
         <circle
           stroke="#f0f0f0"
@@ -44,21 +44,10 @@ function RingCountdown({ percent, children }: Props) {
           cx="150"
           cy="150"
           transform="rotate(-90 150 150)"
-          style={{ transition: 'stroke-dashoffset 0.5s ease, stroke 0.5s ease' }}
         />
       </svg>
       {children && (
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+        <div>
           {children}
         </div>
       )}
