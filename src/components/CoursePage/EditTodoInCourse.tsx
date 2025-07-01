@@ -1,19 +1,19 @@
-import './EditTodoPage.css';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import {
-  getTodayDateLocal,
   getTomorrowEndOfDayLocal,
+  getTodayDateLocal,
 } from '../../utils.tsx/date';
 
 type Props = {
-  todoList: Array<{
+  courseName: string;
+  todoList: {
     id: string;
     subject: string;
     name: string;
     start: string;
     end: string;
-  }>;
+  }[];
   setTodoList: React.Dispatch<
     React.SetStateAction<
       {
@@ -25,19 +25,11 @@ type Props = {
       }[]
     >
   >;
-  courseList: Array<{
-    name: string;
-    location: string;
-    lecturer: string;
-    color: string;
-    inGrids: number[];
-    id: string;
-  }>;
 };
 
-function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
+function EditTodoInCourse({ courseName, todoList, setTodoList }: Props) {
   const [newTodo, setNewTodo] = useState({
-    subject: courseList[0].name || '',
+    subject: courseName,
     name: '',
     start: '',
     end: getTomorrowEndOfDayLocal(),
@@ -59,7 +51,6 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
       const isABeforeB = dayjs(a.end).isBefore(dayjs(b.end));
       return isABeforeB ? -1 : 1;
     });
-
     setTodoList(newTodoList);
 
     setNewTodo({
@@ -69,7 +60,6 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
       end: getTomorrowEndOfDayLocal(),
     });
   }
-
   return (
     <div className="edit-todo-container">
       <input
@@ -80,19 +70,6 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
         }}
         value={newTodo.name}
       />
-      <select
-        className="todo-subject-select"
-        value={newTodo.subject}
-        onChange={(event) => {
-          setNewTodo({ ...newTodo, subject: event.target.value });
-        }}
-      >
-        {courseList.map((course) => (
-          <option key={course.id} value={course.name}>
-            {course.name}
-          </option>
-        ))}
-      </select>
       <input
         className="todo-time-input"
         type="datetime-local"
@@ -109,4 +86,4 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
   );
 }
 
-export default EditTodoPage;
+export default EditTodoInCourse;

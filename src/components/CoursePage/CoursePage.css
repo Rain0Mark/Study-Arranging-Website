@@ -1,0 +1,123 @@
+.course-page {
+  margin: 20px 10px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 32px rgba(37, 99, 235, 0.1);
+  padding: 32px 36px 36px 36px;
+  min-height: 600px;
+}
+
+.course-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.course-detail-container {
+  border-radius: 16px;
+  padding: 24px 32px;
+  background: #2563eb;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.10);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;      /* 橫向排列 */
+  align-items: center;      /* 垂直置中 */
+  gap: 32px;                /* 元素間距 */
+}
+
+.course-detail-container h2,
+.course-detail-container p {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.course-detail-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.course-detail-container p {
+  font-size: 16px;
+  min-width: 120px;
+}
+
+.show-page-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.show-page-buttons button {
+  background: #f1f5f9;
+  color: #2563eb;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 8px 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  transition: background 0.22s, color 0.22s, transform 0.15s;
+}
+.show-page-buttons button.active {
+  background: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.18);
+}
+.show-page-buttons button:not(.active):hover {
+  background: #e0e7ef;
+  color: #1e40af;
+  transform: scale(1.04);
+}
+
+.course-add-button {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.course-add-button button {
+  background: linear-gradient(90deg, #34d399 0%, #2563eb 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(52, 211, 153, 0.1);
+  transition: background 0.22s, box-shadow 0.22s, transform 0.15s;
+}
+.course-add-button button:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #34d399 100%);
+  box-shadow: 0 4px 16px rgba(52, 211, 153, 0.18);
+  transform: scale(1.04);
+}
+
+.course-page button {
+  outline: none;
+}
+
+.course-page > .course-page-header > button {
+  align-self: flex-start;
+  background: #e0e7ef;
+  color: #2563eb;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 7px 18px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.08);
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+.course-page > .course-page-header > button:hover {
+  background: #2563eb;
+  color: #fff;
+  transform: scale(1.04);
+}

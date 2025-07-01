@@ -9,9 +9,20 @@ type Props = {
     start: string;
     end: string;
   }>;
+  setTodoList: React.Dispatch<
+    React.SetStateAction<
+      {
+        id: string;
+        subject: string;
+        name: string;
+        start: string;
+        end: string;
+      }[]
+    >
+  >;
 };
 
-function TodoPage({ todoList }: Props) {
+function TodoPage({ todoList, setTodoList }: Props) {
   return (
     <div className="todo-page">
       <h1 className="heading">待辦事項</h1>
@@ -27,6 +38,9 @@ function TodoPage({ todoList }: Props) {
                   subject={todo.subject}
                   start={todo.start}
                   end={todo.end}
+                  id={todo.id}
+                  todoList={todoList}
+                  setTodoList={setTodoList}
                 />
               </div>
             );

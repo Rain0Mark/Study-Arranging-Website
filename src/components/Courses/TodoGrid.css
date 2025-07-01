@@ -1,3 +1,10 @@
+.todo-grid-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .todo-name {
     font-weight: bold;
     font-size: 40px;
@@ -8,3 +15,16 @@
      color: #666666;
 }
 
+.todo-delete-button {
+    position: absolute;
+    top: 30px;
+    border: none;
+    background-color: transparent;
+    color: red;
+    font-size: 20px;
+    
+}
+
+.todo-delete-button:hover {
+    font-size: 30px;
+}

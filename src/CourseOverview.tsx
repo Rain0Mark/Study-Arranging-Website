@@ -94,7 +94,7 @@ function CourseOverview() {
       ) : showing === 'list' ? (
         <ListPage courseList={courseList} />
       ) : showing === 'todo' ? (
-        <TodoPage todoList={todoList} />
+        <TodoPage todoList={todoList} setTodoList={setTodoList}/>
       ) : null}
     </>
   );

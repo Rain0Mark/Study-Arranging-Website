@@ -91,7 +91,7 @@ function Header({
           ) : (
             <>
               <IoMdAddCircleOutline />
-              Add Todo
+              Add Course
             </>
           )}
         </button>

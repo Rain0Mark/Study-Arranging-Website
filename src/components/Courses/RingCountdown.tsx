@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 function getColorByPercent(percent: number): string {
   if (percent > 66) return '#00ff88'; // 綠
   if (percent > 33) return '#ffcc00'; // 黃
-  return '#ff4444'; // 紅
+  if (percent > 0) return '#ff4444'; // 紅
+  return '#800080';
 }
 
 type Props = {
@@ -57,7 +58,6 @@ function RingCountdown({ percent, children }: Props) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          pointerEvents: 'none',
         }}>
           {children}
         </div>
