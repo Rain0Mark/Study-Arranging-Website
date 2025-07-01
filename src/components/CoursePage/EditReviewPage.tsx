@@ -30,7 +30,6 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
     name: '',
     due: getDateAfterWeek(),
     tag: '',
-    id: '',
     done: false,
     end: '',
   });
@@ -60,7 +59,6 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
       name: '',
       due: getDateAfterWeek(),
       tag: '',
-      id: '',
       done: false,
       end: '',
     });

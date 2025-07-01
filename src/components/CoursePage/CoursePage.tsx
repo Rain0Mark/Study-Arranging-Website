@@ -53,6 +53,14 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       end: string;
     }[]
   >([]);
+  const [gradeList, setGradeList] = useState<
+    {
+      name: string;
+      percent: number;
+      scoreTimesHundred: number;
+      id: string;
+    }[]
+  >([]);
 
   const navigate = useNavigate();
   if (!course)
@@ -139,7 +147,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       ) : editing === 'review' ? (
         <EditReviewPage reviewList={reviewList} setReviewList={setReviewList} />
       ) : editing === 'grade' ? (
-        <EditGradePage />
+        <EditGradePage gradeList={gradeList} setGradeList={setGradeList}/>
       ) : null}
 
       {showing === 'todo' ? (
@@ -151,7 +159,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       ) : showing === 'review' ? (
         <ReviewPage reviewList={reviewList} setReviewList={setReviewList} />
       ) : (
-        <GradePage />
+        <GradePage gradeList={gradeList} setGradeList={setGradeList} />
       )}
     </div>
   );
