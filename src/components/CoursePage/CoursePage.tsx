@@ -44,8 +44,16 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
   const [editing, setEditing] = useState('none');
   const course = courseList.find((c) => c.id === id);
   const [reviewList, setReviewList] = useState<
-    { name: string; due: string; tag: string; id: string }[]
+    {
+      name: string;
+      due: string;
+      tag: string;
+      id: string;
+      done: boolean;
+      end: string;
+    }[]
   >([]);
+
   const navigate = useNavigate();
   if (!course)
     return <div style={{ padding: 32 }}>404 Not Found 找不到課程</div>;
@@ -141,7 +149,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
           course={course}
         />
       ) : showing === 'review' ? (
-        <ReviewPage />
+        <ReviewPage reviewList={reviewList} setReviewList={setReviewList} />
       ) : (
         <GradePage />
       )}

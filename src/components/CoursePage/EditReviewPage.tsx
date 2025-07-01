@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { getDateAfterWeek } from '../../utils.tsx/date';
 
 type Props = {
   reviewList: {
@@ -7,6 +8,8 @@ type Props = {
     due: string;
     tag: string;
     id: string;
+    done: boolean;
+    end: string;
   }[];
   setReviewList: React.Dispatch<
     React.SetStateAction<
@@ -15,6 +18,8 @@ type Props = {
         due: string;
         tag: string;
         id: string;
+        done: boolean;
+        end: string;
       }[]
     >
   >;
@@ -23,9 +28,11 @@ type Props = {
 function EditReviewPage({ reviewList, setReviewList }: Props) {
   const [newReview, setNewReview] = useState({
     name: '',
-    due: '',
+    due: getDateAfterWeek(),
     tag: '',
     id: '',
+    done: false,
+    end: '',
   });
 
   function addNewReview() {
@@ -35,10 +42,12 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
     }
 
     const newReviewItem = {
-      id: crypto.randomUUID(),
       name: newReview.name,
       due: newReview.due,
       tag: newReview.tag,
+      id: crypto.randomUUID(),
+      done: false,
+      end: '',
     };
 
     const newReviewList = [...reviewList, newReviewItem].sort((a, b) => {
@@ -49,9 +58,11 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
 
     setNewReview({
       name: '',
-      due: '',
+      due: getDateAfterWeek(),
       tag: '',
       id: '',
+      done: false,
+      end: '',
     });
     return;
   }
@@ -68,11 +79,19 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
       />
       <input
         className="review-time-input"
-        type="date-local"
+        type="date"
         placeholder="死線"
         value={newReview.due}
         onChange={(event) => {
           setNewReview({ ...newReview, due: event.target.value });
+        }}
+      />
+      <input
+        className="review-tag-input"
+        placeholder="備註事項"
+        value={newReview.tag}
+        onChange={(event) => {
+          setNewReview({ ...newReview, tag: event.target.value });
         }}
       />
       <button className="todo-add-button" onClick={addNewReview}>

@@ -15,6 +15,12 @@ export function getTomorrowEndOfDayLocal(): string {
     .format('YYYY-MM-DDTHH:mm');
 }
 
+export function getDateAfterWeek(): string {
+  return dayjs()
+    .add(7, 'day')
+    .format('YYYY-MM-DD');
+}
+
 export function getRemainingPercent(todo: {
   start: string;
   end: string;
