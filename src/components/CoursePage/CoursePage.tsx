@@ -43,6 +43,9 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
   const [showing, setShowing] = useState('todo');
   const [editing, setEditing] = useState('none');
   const course = courseList.find((c) => c.id === id);
+  const [reviewList, setReviewList] = useState<
+    { name: string; due: string; tag: string; id: string }[]
+  >([]);
   const navigate = useNavigate();
   if (!course)
     return <div style={{ padding: 32 }}>404 Not Found 找不到課程</div>;
@@ -69,6 +72,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
           <button
             onClick={() => {
               setShowing('todo');
+              setEditing('none');
             }}
           >
             Todo-List
@@ -76,6 +80,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
           <button
             onClick={() => {
               setShowing('review');
+              setEditing('none');
             }}
           >
             複習進度
@@ -83,6 +88,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
           <button
             onClick={() => {
               setShowing('grade');
+              setEditing('none');
             }}
           >
             成績
@@ -123,7 +129,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
           setTodoList={setTodoList}
         />
       ) : editing === 'review' ? (
-        <EditReviewPage />
+        <EditReviewPage reviewList={reviewList} setReviewList={setReviewList} />
       ) : editing === 'grade' ? (
         <EditGradePage />
       ) : null}
