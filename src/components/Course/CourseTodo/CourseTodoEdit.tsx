@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import {
   getTomorrowEndOfDayLocal,
   getTodayDateLocal,
-} from '../../utils.tsx/date';
+} from '../../../utils/date';
 
 type Props = {
   courseName: string;
@@ -27,7 +27,7 @@ type Props = {
   >;
 };
 
-function EditTodoInCourse({ courseName, todoList, setTodoList }: Props) {
+function TodoInCourseEdit({ courseName, todoList, setTodoList }: Props) {
   const [newTodo, setNewTodo] = useState({
     subject: courseName,
     name: '',
@@ -82,4 +82,4 @@ function EditTodoInCourse({ courseName, todoList, setTodoList }: Props) {
   );
 }
 
-export default EditTodoInCourse;
+export default TodoInCourseEdit;

@@ -8,12 +8,7 @@ type Props = {
   setChosenGrids: (grids: number[]) => void;
 };
 
-function Header({
-  editing,
-  setEditing,
-  setShowing,
-  setChosenGrids,
-}: Props) {
+function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
   return (
     <div>
       <div>
@@ -45,6 +40,7 @@ function Header({
           Todo
         </button>
       </div>
+      
       <p>Header</p>
       <div>
         <button

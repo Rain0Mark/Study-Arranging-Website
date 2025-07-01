@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router';
-import TablePage from './components/Courses/TablePage';
-import ListPage from './components/Courses/ListPage';
+import TablePage from './components/CourseOverview/Table/TablePage';
+import ListPage from './components/CourseOverview/List/ListPage';
 import Header from './components/Header';
-import EditCoursePage from './components/Courses/EditCoursePage';
-import EditTodoPage from './components/Courses/EditTodoPage';
-import TodoPage from './components/Courses/TodoPage';
+import EditCoursePage from './components/CourseOverview/CourseEdit';
+import TodoEdit from './components/CourseOverview/Todo/TodoEdit';
+import TodoPage from './components/CourseOverview/Todo/TodoPage';
 
 function CourseOverview() {
   const { todoList, setTodoList } = useOutletContext<{
@@ -34,7 +34,7 @@ function CourseOverview() {
     name: '',
     location: '',
     lecturer: '',
-    color: '#ffffff',
+    color: '#ffffff', //預設白色
   });
   const [courseList, setCourseList] = useState<
     {
@@ -56,7 +56,7 @@ function CourseOverview() {
   }, [courseList]);
 
   return (
-    <>
+    <div>
       <Header
         editing={editing}
         setEditing={setEditing}
@@ -76,7 +76,7 @@ function CourseOverview() {
           />
         </div>
       ) : editing === 'todo' ? (
-        <EditTodoPage
+        <TodoEdit
           todoList={todoList}
           setTodoList={setTodoList}
           courseList={courseList}
@@ -93,9 +93,9 @@ function CourseOverview() {
       ) : showing === 'list' ? (
         <ListPage courseList={courseList} />
       ) : showing === 'todo' ? (
-        <TodoPage todoList={todoList} setTodoList={setTodoList}/>
+        <TodoPage todoList={todoList} setTodoList={setTodoList} />
       ) : null}
-    </>
+    </div>
   );
 }
 

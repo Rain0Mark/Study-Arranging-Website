@@ -12,7 +12,7 @@ type Props = {
   children?: ReactNode;
 };
 
-function RingCountdown({ percent, children }: Props) {
+function TodoRingCountdown({ percent, children }: Props) {
   const radius = 150;
   const stroke = 10;
   const normalizedRadius = radius - stroke / 2;
@@ -46,13 +46,9 @@ function RingCountdown({ percent, children }: Props) {
           transform="rotate(-90 150 150)"
         />
       </svg>
-      {children && (
-        <div>
-          {children}
-        </div>
-      )}
+      {children && <div>{children}</div>}
     </div>
   );
 }
 
-export default RingCountdown;
+export default TodoRingCountdown;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import RingCountdown from './RingCountdown';
-import { getLeftTime } from '../../utils.tsx/date';
+import TodoRingCountdown from './TodoRingCountdown';
+import { getLeftTime } from '../../../utils/date';
 import { ImCancelCircle } from 'react-icons/im';
 
 type Props = {
@@ -60,7 +60,7 @@ function TodoGrid({
   const left = dayjs(end).diff(now);
   const percent = Math.max(0, Math.min(100, (left / total) * 100));
   return (
-    <RingCountdown percent={parseFloat(percent.toFixed(1))}>
+    <TodoRingCountdown percent={parseFloat(percent.toFixed(1))}>
       <div>
         <button onClick={deleteTodo}>
           <ImCancelCircle />
@@ -69,7 +69,7 @@ function TodoGrid({
         <div>{subject}</div>
         <div>{getLeftTime(left)}</div>
       </div>
-    </RingCountdown>
+    </TodoRingCountdown>
   );
 }
 

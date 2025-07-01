@@ -19,7 +19,7 @@ type Props = {
   >;
 };
 
-function EditGradePage({ gradeList, setGradeList }: Props) {
+function GradeEdit({ gradeList, setGradeList }: Props) {
   const [newGrade, setNewGrade] = useState({
     name: '',
     percent: 0,
@@ -68,4 +68,4 @@ function EditGradePage({ gradeList, setGradeList }: Props) {
   );
 }
 
-export default EditGradePage;
+export default GradeEdit;

@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import TodoListLayout from './components/TodoListLayout.tsx';
+import TodoListLayout from './components/TodoLayout.tsx';
 import CourseOverview from './CourseOverview.tsx';
-import CoursePageWrapper from './components/CoursePage/CoursePageWrapper.tsx';
+import CoursePageWrapper from './components/Course/CoursePageWrapper.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -33,7 +33,7 @@ type Props = {
   setChosenGrids: (grids: number[]) => void;
 };
 
-function EditCoursePage({
+function CourseEdit({
   newCourse,
   setNewCourse,
   courseList,
@@ -137,17 +137,11 @@ function EditCoursePage({
         }}
         value={newCourse.color}
       />
-      <button onClick={addCourse}>
-        Add
-      </button>
-      <button onClick={clearNewCourseInput}>
-        Clear
-      </button>
-      <button onClick={deleteCourse}>
-        delete
-      </button>
+      <button onClick={addCourse}>Add</button>
+      <button onClick={clearNewCourseInput}>Clear</button>
+      <button onClick={deleteCourse}>delete</button>
     </div>
   );
 }
 
-export default EditCoursePage;
+export default CourseEdit;

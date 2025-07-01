@@ -1,4 +1,4 @@
-import { courseTime } from './CourseTime';
+import { courseTime } from '../../../data/CourseTime';
 import TableGrid from './TableGrid';
 
 type Props = {

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
-import TodoListPage from './TodoInCoursePage.tsx';
-import ReviewPage from './ReviewPage.tsx';
-import GradePage from './GradePage.tsx';
-import EditTodoInCourse from './EditTodoInCourse.tsx';
-import EditReviewPage from './EditReviewPage.tsx';
-import EditGradePage from './EditGradePage.tsx';
 import { useNavigate } from 'react-router';
+import CourseTodoPage from './CourseTodo/CourseTodoPage.tsx';
+import ReviewPage from './Review/ReviewPage.tsx';
+import GradePage from './Grade/GradePage.tsx';
+import CourseTodoEdit from './CourseTodo/CourseTodoEdit.tsx';
+import ReviewEdit from './Review/ReviewEdit.tsx';
+import GradeEdit from './Grade/GradeEdit.tsx';
 
 type Props = {
   courseList: {
@@ -134,19 +134,19 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       </div>
 
       {editing === 'todo' ? (
-        <EditTodoInCourse
+        <CourseTodoEdit
           courseName={course.name}
           todoList={todoList}
           setTodoList={setTodoList}
         />
       ) : editing === 'review' ? (
-        <EditReviewPage reviewList={reviewList} setReviewList={setReviewList} />
+        <ReviewEdit reviewList={reviewList} setReviewList={setReviewList} />
       ) : editing === 'grade' ? (
-        <EditGradePage gradeList={gradeList} setGradeList={setGradeList} />
+        <GradeEdit gradeList={gradeList} setGradeList={setGradeList} />
       ) : null}
 
       {showing === 'todo' ? (
-        <TodoListPage
+        <CourseTodoPage
           todoList={todoList}
           setTodoList={setTodoList}
           course={course}

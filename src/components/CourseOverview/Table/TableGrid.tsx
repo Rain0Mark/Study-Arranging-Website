@@ -39,12 +39,8 @@ function CurriculumGrid({
   }
 
   return (
-    <div
-      onClick={editing === 'course' ? chosen : showClassDetails}
-    >
-      {chosenGrids.includes(index) && (
-        <div>已選取</div>
-      )}
+    <div onClick={editing === 'course' ? chosen : showClassDetails}>
+      {chosenGrids.includes(index) && <div>已選取</div>}
       <p>{course.name}</p>
       <p>{course.location}</p>
       <p>{course.lecturer}</p>

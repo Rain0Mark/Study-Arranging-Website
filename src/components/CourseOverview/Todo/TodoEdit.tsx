@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import {
   getTodayDateLocal,
   getTomorrowEndOfDayLocal,
-} from '../../utils.tsx/date';
+} from '../../../utils/date';
 
 type Props = {
   todoList: Array<{
@@ -34,7 +34,7 @@ type Props = {
   }>;
 };
 
-function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
+function TodoEdit({ todoList, setTodoList, courseList }: Props) {
   const [newTodo, setNewTodo] = useState({
     subject: courseList[0].name || '',
     name: '',
@@ -103,4 +103,4 @@ function EditTodoPage({ todoList, setTodoList, courseList }: Props) {
   );
 }
 
-export default EditTodoPage;
+export default TodoEdit;

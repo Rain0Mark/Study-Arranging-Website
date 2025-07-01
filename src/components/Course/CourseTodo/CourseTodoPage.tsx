@@ -1,4 +1,4 @@
-import TodoGrid from '../Courses/TodoGrid';
+import TodoGrid from '../../CourseOverview/Todo/TodoGrid';
 
 type Props = {
   course: {
@@ -29,7 +29,7 @@ type Props = {
   >;
 };
 
-function TodoInCoursePage({ course, todoList, setTodoList }: Props) {
+function CourseTodoPage({ course, todoList, setTodoList }: Props) {
   const todoListInCourse = todoList.filter((todo) => {
     return todo.subject === course.name;
   });
@@ -55,4 +55,4 @@ function TodoInCoursePage({ course, todoList, setTodoList }: Props) {
   );
 }
 
-export default TodoInCoursePage;
+export default CourseTodoPage;

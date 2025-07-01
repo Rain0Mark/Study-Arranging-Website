@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
-import { getDateAfterWeek } from '../../utils.tsx/date';
+import { getDateAfterWeek } from '../../../utils/date';
 
 type Props = {
   reviewList: {
@@ -25,7 +25,7 @@ type Props = {
   >;
 };
 
-function EditReviewPage({ reviewList, setReviewList }: Props) {
+function ReviewEdit({ reviewList, setReviewList }: Props) {
   const [newReview, setNewReview] = useState({
     name: '',
     due: getDateAfterWeek(),
@@ -94,4 +94,4 @@ function EditReviewPage({ reviewList, setReviewList }: Props) {
   );
 }
 
-export default EditReviewPage;
+export default ReviewEdit;
