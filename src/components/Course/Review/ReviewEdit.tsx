@@ -43,7 +43,7 @@ function ReviewEdit({ reviewList, setReviewList }: Props) {
 
     const newReviewItem = {
       name: newReview.name,
-      due: newReview.due,
+      due: dayjs(newReview.due).format('MM/DD'),
       tag: newReview.tag,
       id: crypto.randomUUID(),
       done: false,

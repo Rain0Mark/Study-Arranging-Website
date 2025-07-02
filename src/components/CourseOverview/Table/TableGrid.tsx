@@ -64,14 +64,28 @@ function CurriculumGrid({
         color: 'white',
       }}
     >
-      {isSelected && <Box sx={{ fontSize: 12, color: 'white' }}>已選取</Box>}
+      {isSelected && (
+        <Box sx={{ fontSize: { xs: '1rem', lg: '1.4rem' }, color: 'white' }}>
+          已選取
+        </Box>
+      )}
       {!isEmpty && (
         <>
-          <Box sx={{ fontWeight: 'bold', textAlign: 'center', fontSize: 22 }}>
+          <Box
+            sx={{
+              fontSize: { xs: '1rem', lg: '1.4rem' },
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
             {course.name}
           </Box>
-          <Box sx={{ fontSize: 12 }}>{course.location}</Box>
-          <Box sx={{ fontSize: 12 }}>{course.lecturer}</Box>
+          <Box sx={{ fontSize: { xs: '0.6rem', lg: '1rem' } }}>
+            {course.location}
+          </Box>
+          <Box sx={{ fontSize: { xs: '0.6rem', lg: '1rem' } }}>
+            {course.lecturer}
+          </Box>
         </>
       )}
     </Box>

@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react';
 
 function getColorByPercent(percent: number): string {
-  if (percent > 66) return '#00ff88'; // 綠
-  if (percent > 33) return '#ffcc00'; // 黃
-  if (percent > 0) return '#ff4444'; // 紅
-  return '#800080';
+  const clamped = Math.max(0, Math.min(100, percent)); // 限制在 0-100
+  const hue = (clamped * 120) / 100; // 0 = 紅, 120 = 綠
+  return `hsl(${hue}, 100%, 50%)`; // 飽和度100%，亮度50%
 }
 
 type Props = {

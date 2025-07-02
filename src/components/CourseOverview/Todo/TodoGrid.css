@@ -21,15 +21,14 @@
   top: 30px;
   border: none;
   background-color: transparent;
-  color: red;
   font-size: 20px;
+  color: white;
 }
 
 .todo-delete-button:hover {
-  font-size: 30px;
+  color: red;
 }
 
-
 .todo-left {
-    color: white;
+  color: white;
 }

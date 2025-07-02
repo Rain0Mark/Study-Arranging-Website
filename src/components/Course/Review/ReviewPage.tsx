@@ -1,3 +1,4 @@
+import { Typography, Box, Grid, Divider } from '@mui/material';
 import ReviewBar from './ReviewBar';
 import ReviewBarDone from './ReviewBarDone';
 
@@ -27,46 +28,64 @@ type Props = {
 function ReviewPage({ reviewList, setReviewList }: Props) {
   const reviewListNotDone = reviewList.filter((review) => !review.done);
   const reviewListDone = reviewList.filter((review) => review.done);
+
   return (
-    <div>
-      <h1>未完成事項</h1>
-      <div>
-        <p>範圍</p>
-        <p>死線</p>
-        <p>備注</p>
-      </div>
-      <div>
-        {reviewListNotDone.map((review) => {
-          return (
-            <ReviewBar
-              key={review.id}
-              review={review}
-              setReviewList={setReviewList}
-            />
-          );
-        })}
-      </div>
-      <h1>已完成事項</h1>
-      <div>
-        <p>範圍</p>
-        <p>完成日期</p>
-        <p>備注</p>
-      </div>
-      <div>
-        {reviewListDone
-          .slice()
-          .reverse()
-          .map((review) => {
-            return (
-              <ReviewBarDone
-                key={review.id}
-                review={review}
-                setReviewList={setReviewList}
-              />
-            );
-          })}
-      </div>
-    </div>
+    <Box sx={{ color: 'white' }}>
+      <Typography variant="h5" gutterBottom>
+        未完成進度
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 1 }}>
+        <Grid size={1.1}>
+          <Typography />
+        </Grid>
+        <Grid size={3.93}>
+          <Typography>範圍</Typography>
+        </Grid>
+        <Grid size={2.9}>
+          <Typography>死線</Typography>
+        </Grid>
+        <Grid size={4}>
+          <Typography>備註</Typography>
+        </Grid>
+      </Grid>
+      {reviewListNotDone.map((review) => (
+        <ReviewBar
+          key={review.id}
+          review={review}
+          setReviewList={setReviewList}
+        />
+      ))}
+
+      <Divider sx={{ my: 4, borderColor: 'gray' }} />
+
+      <Typography variant="h5" gutterBottom>
+        已完成進度
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 1 }}>
+        <Grid size={1.1}>
+          <Typography />
+        </Grid>
+        <Grid size={3.93}>
+          <Typography>範圍</Typography>
+        </Grid>
+        <Grid size={2.9}>
+          <Typography>完成日期</Typography>
+        </Grid>
+        <Grid size={4}>
+          <Typography>備註</Typography>
+        </Grid>
+      </Grid>
+      {reviewListDone
+        .slice()
+        .reverse()
+        .map((review) => (
+          <ReviewBarDone
+            key={review.id}
+            review={review}
+            setReviewList={setReviewList}
+          />
+        ))}
+    </Box>
   );
 }
 

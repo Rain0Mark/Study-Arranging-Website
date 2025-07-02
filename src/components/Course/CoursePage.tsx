@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
 import CourseTodoPage from './CourseTodo/CourseTodoPage.tsx';
@@ -49,7 +49,7 @@ type Props = {
 
 function CoursePage({ courseList, todoList, setTodoList }: Props) {
   const { id } = useParams();
-  const [showing, setShowing] = useState('todo');
+  const [showing, setShowing] = useState('review');
   const [editing, setEditing] = useState('none');
   const course = courseList.find((c) => c.id === id);
   const [reviewList, setReviewList] = useState<
@@ -61,7 +61,17 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       done: boolean;
       end: string;
     }[]
-  >([]);
+  >(() => {
+    const saved = localStorage.getItem(`reviewList-${id}`);
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    if (id) {
+      localStorage.setItem(`reviewList-${id}`, JSON.stringify(reviewList));
+    }
+  }, [reviewList, id]);
+
   const [gradeList, setGradeList] = useState<
     {
       name: string;
@@ -69,7 +79,16 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       scoreTimesHundred: number;
       id: string;
     }[]
-  >([]);
+  >(() => {
+    const saved = localStorage.getItem(`gradeList-${id}`);
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    if (id) {
+      localStorage.setItem(`gradeList-${id}`, JSON.stringify(gradeList));
+    }
+  }, [gradeList, id]);
 
   const navigate = useNavigate();
   if (!course) return <div>404 Not Found 找不到課程</div>;

@@ -36,15 +36,15 @@ function CourseTodoPage({ course, todoList, setTodoList }: Props) {
   });
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
       {todoListInCourse.length === 0 ? (
         <Typography variant="h3" color="white">
           目前沒有待辦事項
         </Typography>
       ) : (
-        <Grid container spacing={2} columns={10}>
+        <Grid container spacing={2}>
           {todoListInCourse.map((todo) => (
-            <Grid key={todo.id} size={2}>
+            <Grid key={todo.id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
               <TodoGrid
                 name={todo.name}
                 subject={todo.subject}
@@ -63,22 +63,3 @@ function CourseTodoPage({ course, todoList, setTodoList }: Props) {
 }
 
 export default CourseTodoPage;
-
-/*    <div>
-      {todoListInCourse.map((todo) => {
-        return (
-          <div key={todo.id}>
-            <TodoGrid
-              name={todo.name}
-              subject={todo.subject}
-              start={todo.start}
-              end={todo.end}
-              id={todo.id}
-              todoList={todoList}
-              setTodoList={setTodoList}
-            />
-          </div>
-        );
-      })}
-    </div>
-  );*/

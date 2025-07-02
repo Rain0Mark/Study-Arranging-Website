@@ -1,3 +1,6 @@
+import { Checkbox, Grid, Paper, Typography, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 type Props = {
   review: {
     name: string;
@@ -30,13 +33,58 @@ function ReviewBarDone({ review, setReviewList }: Props) {
     );
   };
 
+  const deleteReview = () => {
+    setReviewList((prevList) =>
+      prevList.filter((item) => item.id !== review.id)
+    );
+  };
+
   return (
-    <div>
-      <input type="checkbox" checked={review.done} onChange={toggleDone} />
-      <p>{review.name}</p>
-      <p>{review.end}</p>
-      <p>{review.tag}</p>
-    </div>
+    <Paper
+      elevation={3}
+      sx={{
+        bgcolor: '#444',
+        p: 2,
+        mb: 1,
+        color: 'white',
+      }}
+    >
+      <Grid container spacing={2} alignItems="center">
+        <Grid
+          size={{ xs: 1 }}
+          sx={{ display: 'flex', justifyContent: 'flex-start' }}
+        >
+          <Checkbox
+            checked={review.done}
+            onChange={toggleDone}
+            sx={{ color: 'white' }}
+          />
+        </Grid>
+        <Grid size={{ xs: 4 }}>
+          <Typography fontSize={{ xs: '0.9rem', sm: '1rem' }}>
+            {review.name}
+          </Typography>
+        </Grid>
+        <Grid size={{ xs: 3 }}>
+          <Typography fontSize={{ xs: '0.8rem', sm: '1rem' }}>
+            {review.end}
+          </Typography>
+        </Grid>
+        <Grid size={{ xs: 3 }}>
+          <Typography fontSize={{ xs: '0.8rem', sm: '1rem' }}>
+            {review.tag}
+          </Typography>
+        </Grid>
+        <Grid
+          size={{ xs: 1 }}
+          sx={{ display: 'flex', justifyContent: 'flex-start' }}
+        >
+          <IconButton onClick={deleteReview} sx={{ color: 'white' }}>
+            <DeleteIcon />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 
