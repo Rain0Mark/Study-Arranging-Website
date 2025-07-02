@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { Stack, TextField, Button } from '@mui/material';
 import { getDateAfterWeek } from '../../../utils/date';
 
 type Props = {
@@ -35,7 +36,7 @@ function ReviewEdit({ reviewList, setReviewList }: Props) {
   });
 
   function addNewReview() {
-    if (!newReview.name) {
+    if (!newReview.name.trim()) {
       alert('請輸入複習進度名稱');
       return;
     }
@@ -50,8 +51,7 @@ function ReviewEdit({ reviewList, setReviewList }: Props) {
     };
 
     const newReviewList = [...reviewList, newReviewItem].sort((a, b) => {
-      const isABeforeB = dayjs(a.due).isBefore(dayjs(b.due));
-      return isABeforeB ? -1 : 1;
+      return dayjs(a.due).isBefore(dayjs(b.due)) ? -1 : 1;
     });
     setReviewList(newReviewList);
 
@@ -62,35 +62,69 @@ function ReviewEdit({ reviewList, setReviewList }: Props) {
       done: false,
       end: '',
     });
-    return;
   }
 
   return (
-    <div>
-      <input
-        placeholder="輸入名稱"
-        onChange={(event) => {
-          setNewReview({ ...newReview, name: event.target.value });
-        }}
+    <Stack spacing={2} sx={{ p: 2, color: 'white' }}>
+      <TextField
+        fullWidth
+        label="複習名稱"
+        variant="outlined"
         value={newReview.name}
+        onChange={(event) =>
+          setNewReview({ ...newReview, name: event.target.value })
+        }
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'white' },
+          },
+        }}
       />
-      <input
+
+      <TextField
+        fullWidth
         type="date"
-        placeholder="死線"
+        label="截止日期"
+        InputLabelProps={{ shrink: true }}
         value={newReview.due}
-        onChange={(event) => {
-          setNewReview({ ...newReview, due: event.target.value });
+        onChange={(event) =>
+          setNewReview({ ...newReview, due: event.target.value })
+        }
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'white' },
+          },
         }}
       />
-      <input
-        placeholder="備註事項"
+
+      <TextField
+        fullWidth
+        label="備註"
+        variant="outlined"
         value={newReview.tag}
-        onChange={(event) => {
-          setNewReview({ ...newReview, tag: event.target.value });
+        onChange={(event) =>
+          setNewReview({ ...newReview, tag: event.target.value })
+        }
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'white' },
+          },
         }}
       />
-      <button onClick={addNewReview}>新增複習進度</button>
-    </div>
+
+      <Button variant="contained" color="primary" onClick={addNewReview}>
+        新增複習進度
+      </Button>
+    </Stack>
   );
 }
 

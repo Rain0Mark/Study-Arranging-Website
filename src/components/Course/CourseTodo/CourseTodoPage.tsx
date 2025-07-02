@@ -1,4 +1,5 @@
 import TodoGrid from '../../CourseOverview/Todo/TodoGrid';
+import { Box, Typography, Grid } from '@mui/material';
 
 type Props = {
   course: {
@@ -35,7 +36,35 @@ function CourseTodoPage({ course, todoList, setTodoList }: Props) {
   });
 
   return (
-    <div>
+    <Box sx={{ p: 2 }}>
+      {todoListInCourse.length === 0 ? (
+        <Typography variant="h3" color="white">
+          目前沒有待辦事項
+        </Typography>
+      ) : (
+        <Grid container spacing={2} columns={10}>
+          {todoListInCourse.map((todo) => (
+            <Grid key={todo.id} size={2}>
+              <TodoGrid
+                name={todo.name}
+                subject={todo.subject}
+                start={todo.start}
+                end={todo.end}
+                id={todo.id}
+                todoList={todoList}
+                setTodoList={setTodoList}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Box>
+  );
+}
+
+export default CourseTodoPage;
+
+/*    <div>
       {todoListInCourse.map((todo) => {
         return (
           <div key={todo.id}>
@@ -52,7 +81,4 @@ function CourseTodoPage({ course, todoList, setTodoList }: Props) {
         );
       })}
     </div>
-  );
-}
-
-export default CourseTodoPage;
+  );*/

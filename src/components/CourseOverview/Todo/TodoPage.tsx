@@ -1,4 +1,5 @@
 import TodoGrid from './TodoGrid';
+import { Box, Typography, Grid } from '@mui/material';
 
 type Props = {
   todoList: Array<{
@@ -23,30 +24,29 @@ type Props = {
 
 function TodoPage({ todoList, setTodoList }: Props) {
   return (
-    <div>
-      <h1>待辦事項</h1>
+    <Box sx={{ p: 2 }}>
       {todoList.length === 0 ? (
-        <p>目前沒有待辦事項。</p>
+        <Typography variant="h3" color="white">
+          目前沒有待辦事項
+        </Typography>
       ) : (
-        <div>
-          {todoList.map((todo) => {
-            return (
-              <div key={todo.id}>
-                <TodoGrid
-                  name={todo.name}
-                  subject={todo.subject}
-                  start={todo.start}
-                  end={todo.end}
-                  id={todo.id}
-                  todoList={todoList}
-                  setTodoList={setTodoList}
-                />
-              </div>
-            );
-          })}
-        </div>
+        <Grid container spacing={2} columns={10}>
+          {todoList.map((todo) => (
+            <Grid key={todo.id} size={2}>
+              <TodoGrid
+                name={todo.name}
+                subject={todo.subject}
+                start={todo.start}
+                end={todo.end}
+                id={todo.id}
+                todoList={todoList}
+                setTodoList={setTodoList}
+              />
+            </Grid>
+          ))}
+        </Grid>
       )}
-    </div>
+    </Box>
   );
 }
 

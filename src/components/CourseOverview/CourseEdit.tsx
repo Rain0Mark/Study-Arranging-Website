@@ -1,3 +1,5 @@
+import { TextField, Button, Stack, InputLabel, Box } from '@mui/material';
+
 type Props = {
   newCourse: {
     name: string;
@@ -46,7 +48,7 @@ function CourseEdit({
       name: '',
       location: '',
       lecturer: '',
-      color: '#ffffff',
+      color: 'transparent',
     });
   }
 
@@ -94,53 +96,99 @@ function CourseEdit({
   }
 
   return (
-    <div>
+    <Stack spacing={2} sx={{ p: 2, color: 'white' }}>
+      <TextField
+        fullWidth
+        label="課程名稱"
+        variant="outlined"
+        value={newCourse.name}
+        onChange={(event) => {
+          setNewCourse({ ...newCourse, name: event.target.value });
+        }}
+        InputLabelProps={{ style: { color: 'white' } }}
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
+        }}
+      />
+
+      <TextField
+        fullWidth
+        label="課程地點"
+        variant="outlined"
+        value={newCourse.location}
+        onChange={(event) => {
+          setNewCourse({ ...newCourse, location: event.target.value });
+        }}
+        InputLabelProps={{ style: { color: 'white' } }}
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
+        }}
+      />
+
+      <TextField
+        fullWidth
+        label="授課老師"
+        variant="outlined"
+        value={newCourse.lecturer}
+        onChange={(event) => {
+          setNewCourse({ ...newCourse, lecturer: event.target.value });
+        }}
+        InputLabelProps={{ style: { color: 'white' } }}
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
+        }}
+      />
+
       <div>
+        <InputLabel sx={{ color: 'white', mb: 1 }}>背景顏色</InputLabel>
         <input
-          placeholder="course name"
+          type="color"
+          value={newCourse.color}
           onChange={(event) => {
-            setNewCourse({
-              ...newCourse,
-              name: event.target.value,
-            });
+            setNewCourse({ ...newCourse, color: event.target.value });
           }}
-          value={newCourse.name}
-        />
-        <input
-          placeholder="location"
-          onChange={(event) => {
-            setNewCourse({
-              ...newCourse,
-              location: event.target.value,
-            });
-          }}
-          value={newCourse.location}
-        />
-        <input
-          placeholder="lecturer"
-          onChange={(event) => {
-            setNewCourse({
-              ...newCourse,
-              lecturer: event.target.value,
-            });
-          }}
-          value={newCourse.lecturer}
         />
       </div>
-      <input
-        type="color"
-        onChange={(event) => {
-          setNewCourse({
-            ...newCourse,
-            color: event.target.value,
-          });
-        }}
-        value={newCourse.color}
-      />
-      <button onClick={addCourse}>Add</button>
-      <button onClick={clearNewCourseInput}>Clear</button>
-      <button onClick={deleteCourse}>delete</button>
-    </div>
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{ mr: 1 }}
+          onClick={addCourse}
+        >
+          Add
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          fullWidth
+          sx={{ mx: 1 }}
+          onClick={clearNewCourseInput}
+        >
+          Clear
+        </Button>
+        <Button
+          variant="outlined"
+          color="error"
+          fullWidth
+          sx={{ ml: 1 }}
+          onClick={deleteCourse}
+        >
+          Delete
+        </Button>
+      </Box>
+    </Stack>
   );
 }
 

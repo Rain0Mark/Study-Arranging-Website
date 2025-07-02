@@ -12,7 +12,7 @@ type Props = {
   children?: ReactNode;
 };
 
-function TodoRingCountdown({ percent, children }: Props) {
+function RingCountdown({ percent, children }: Props) {
   const radius = 150;
   const stroke = 10;
   const normalizedRadius = radius - stroke / 2;
@@ -23,7 +23,15 @@ function TodoRingCountdown({ percent, children }: Props) {
   console.log(percent);
 
   return (
-    <div>
+    <div
+      style={{
+        position: 'relative',
+        width: 300,
+        height: 300,
+        display: 'inline-block',
+        margin: 8,
+      }}
+    >
       <svg width="300" height="300">
         <circle
           stroke="#f0f0f0"
@@ -44,11 +52,30 @@ function TodoRingCountdown({ percent, children }: Props) {
           cx="150"
           cy="150"
           transform="rotate(-90 150 150)"
+          style={{
+            transition: 'stroke-dashoffset 0.5s ease, stroke 0.5s ease',
+          }}
         />
       </svg>
-      {children && <div>{children}</div>}
+      {children && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 }
 
-export default TodoRingCountdown;
+export default RingCountdown;

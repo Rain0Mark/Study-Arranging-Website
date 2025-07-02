@@ -7,6 +7,16 @@ import GradePage from './Grade/GradePage.tsx';
 import CourseTodoEdit from './CourseTodo/CourseTodoEdit.tsx';
 import ReviewEdit from './Review/ReviewEdit.tsx';
 import GradeEdit from './Grade/GradeEdit.tsx';
+import {
+  Tabs,
+  Tab,
+  Paper,
+  Box,
+  Button,
+  Stack,
+  Typography,
+  Grid,
+} from '@mui/material';
 
 type Props = {
   courseList: {
@@ -65,73 +75,73 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
   if (!course) return <div>404 Not Found 找不到課程</div>;
 
   return (
-    <div>
-      <div>
-        <button
+    <Box sx={{ p: 2 }}>
+      <Button
+        onClick={() => navigate(`/`)}
+        variant="contained"
+        sx={{ position: 'sticky', top: 0, zIndex: 1000 }}
+      >
+        回到首頁
+      </Button>
+
+      <Tabs
+        value={['todo', 'review', 'grade'].indexOf(showing)}
+        onChange={(_, newValue) => {
+          setShowing(['todo', 'review', 'grade'][newValue]);
+          setEditing('none');
+        }}
+        variant="fullWidth"
+        textColor="inherit"
+        indicatorColor="primary"
+      >
+        <Tab label="待辦事項" sx={{ color: 'white' }} />
+        <Tab label="複習進度" sx={{ color: 'white' }} />
+        <Tab label="成績列表" sx={{ color: 'white' }} />
+      </Tabs>
+
+      <Stack direction="row" spacing={2} justifyContent="space-around" my={2}>
+        <Button
+          variant={editing === 'todo' ? 'outlined' : 'contained'}
           onClick={() => {
-            navigate(`/`);
+            setEditing(editing === 'todo' ? 'none' : 'todo');
+            setShowing('todo');
           }}
         >
-          回到首頁
-        </button>
-        <div>
-          <h2>{course.name}</h2>
-          <p>地點：{course.location}</p>
-          <p>老師：{course.lecturer}</p>
-        </div>
-        <div>
-          <button
-            onClick={() => {
-              setShowing('todo');
-              setEditing('none');
-            }}
-          >
-            Todo-List
-          </button>
-          <button
-            onClick={() => {
-              setShowing('review');
-              setEditing('none');
-            }}
-          >
-            複習進度
-          </button>
-          <button
-            onClick={() => {
-              setShowing('grade');
-              setEditing('none');
-            }}
-          >
-            成績
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => {
-              setEditing(editing === 'todo' ? 'none' : 'todo');
-              setShowing('todo');
-            }}
-          >
-            Add Todo-List
-          </button>
-          <button
-            onClick={() => {
-              setEditing(editing === 'review' ? 'none' : 'review');
-              setShowing('review');
-            }}
-          >
-            Edit Review Progress
-          </button>
-          <button
-            onClick={() => {
-              setEditing(editing === 'grade' ? 'none' : 'grade');
-              setShowing('grade');
-            }}
-          >
-            Edit Grades
-          </button>
-        </div>
-      </div>
+          新增待辦事項
+        </Button>
+        <Button
+          variant={editing === 'review' ? 'outlined' : 'contained'}
+          onClick={() => {
+            setEditing(editing === 'review' ? 'none' : 'review');
+            setShowing('review');
+          }}
+        >
+          新增複習進度
+        </Button>
+        <Button
+          variant={editing === 'grade' ? 'outlined' : 'contained'}
+          onClick={() => {
+            setEditing(editing === 'grade' ? 'none' : 'grade');
+            setShowing('grade');
+          }}
+        >
+          新增成績列表
+        </Button>
+      </Stack>
+
+      <Paper sx={{ p: 2, mb: 2, bgcolor: '#333', color: 'white' }}>
+        <Grid container spacing={2}>
+          <Grid>
+            <Typography>課程名稱：{course.name}</Typography>
+          </Grid>
+          <Grid>
+            <Typography>地點：{course.location}</Typography>
+          </Grid>
+          <Grid>
+            <Typography>老師：{course.lecturer}</Typography>
+          </Grid>
+        </Grid>
+      </Paper>
 
       {editing === 'todo' ? (
         <CourseTodoEdit
@@ -156,7 +166,7 @@ function CoursePage({ courseList, todoList, setTodoList }: Props) {
       ) : (
         <GradePage gradeList={gradeList} setGradeList={setGradeList} />
       )}
-    </div>
+    </Box>
   );
 }
 

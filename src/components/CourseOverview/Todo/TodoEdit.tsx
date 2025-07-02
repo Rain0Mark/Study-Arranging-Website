@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import {
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Button,
+  Stack,
+} from '@mui/material';
+import {
   getTodayDateLocal,
   getTomorrowEndOfDayLocal,
 } from '../../../utils/date';
@@ -36,7 +45,7 @@ type Props = {
 
 function TodoEdit({ todoList, setTodoList, courseList }: Props) {
   const [newTodo, setNewTodo] = useState({
-    subject: courseList[0].name || '',
+    subject: courseList[0]?.name || '',
     name: '',
     start: '',
     end: getTomorrowEndOfDayLocal(),
@@ -60,7 +69,6 @@ function TodoEdit({ todoList, setTodoList, courseList }: Props) {
     });
 
     setTodoList(newTodoList);
-
     setNewTodo({
       subject: newTodo.subject,
       name: '',
@@ -70,36 +78,71 @@ function TodoEdit({ todoList, setTodoList, courseList }: Props) {
   }
 
   return (
-    <div>
-      <input
-        placeholder="輸入名稱"
-        onChange={(event) => {
-          setNewTodo({ ...newTodo, name: event.target.value });
-        }}
+    <Stack spacing={2} sx={{ p: 2, color: 'white' }}>
+      <TextField
+        fullWidth
+        label="名稱"
+        variant="outlined"
         value={newTodo.name}
-      />
-      <select
-        value={newTodo.subject}
-        onChange={(event) => {
-          setNewTodo({ ...newTodo, subject: event.target.value });
+        onChange={(event) =>
+          setNewTodo({ ...newTodo, name: event.target.value })
+        }
+        InputLabelProps={{ style: { color: 'white' } }}
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
         }}
-      >
-        {courseList.map((course) => (
-          <option key={course.id} value={course.name}>
-            {course.name}
-          </option>
-        ))}
-      </select>
-      <input
+      />
+
+      <FormControl fullWidth>
+        <InputLabel id="subject-label" sx={{ color: 'white' }}>
+          科目
+        </InputLabel>
+        <Select
+          labelId="subject-label"
+          value={newTodo.subject}
+          label="科目"
+          onChange={(event) =>
+            setNewTodo({ ...newTodo, subject: event.target.value })
+          }
+          sx={{
+            color: 'white',
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'white',
+            },
+          }}
+        >
+          {courseList.map((course) => (
+            <MenuItem key={course.id} value={course.name}>
+              {course.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <TextField
+        fullWidth
+        label="結束時間"
         type="datetime-local"
-        placeholder="結束時間"
+        InputLabelProps={{ shrink: true, style: { color: 'white' } }}
         value={newTodo.end}
-        onChange={(event) => {
-          setNewTodo({ ...newTodo, end: event.target.value });
+        onChange={(event) =>
+          setNewTodo({ ...newTodo, end: event.target.value })
+        }
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
         }}
       />
-      <button onClick={addNewTodo}>新增待辦事項</button>
-    </div>
+
+      <Button variant="contained" color="primary" onClick={addNewTodo}>
+        新增待辦事項
+      </Button>
+    </Stack>
   );
 }
 

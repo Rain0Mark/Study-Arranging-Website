@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Stack, TextField, Button } from '@mui/material';
 
 type Props = {
   gradeList: {
@@ -23,48 +24,69 @@ function GradeEdit({ gradeList, setGradeList }: Props) {
   const [newGrade, setNewGrade] = useState({
     name: '',
     percent: 0,
-    scoreTimesHundred: 0,
   });
 
   function addNewGrade() {
-    if (!newGrade.name) {
+    if (!newGrade.name.trim()) {
       alert('請輸入成績名稱');
       return;
     }
+
     const newGradeItem = {
       id: crypto.randomUUID(),
       name: newGrade.name,
       percent: newGrade.percent,
-      scoreTimesHundred: newGrade.scoreTimesHundred,
+      scoreTimesHundred: 0,
     };
 
     setGradeList([...gradeList, newGradeItem]);
-    setNewGrade({
-      name: '',
-      percent: 0,
-      scoreTimesHundred: 0,
-    });
+    setNewGrade({ name: '', percent: 0 });
   }
 
   return (
-    <div>
-      <input
-        placeholder="輸入名稱"
-        onChange={(event) => {
-          setNewGrade({ ...newGrade, name: event.target.value });
-        }}
+    <Stack spacing={2} sx={{ p: 2, color: 'white' }}>
+      <TextField
+        fullWidth
+        label="成績名稱"
+        variant="outlined"
         value={newGrade.name}
-      />
-      <input
-        type="number"
-        placeholder="輸入佔比"
-        value={newGrade.percent}
-        onChange={(event) => {
-          setNewGrade({ ...newGrade, percent: Number(event.target.value) });
+        onChange={(event) =>
+          setNewGrade({ ...newGrade, name: event.target.value })
+        }
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'white' },
+          },
         }}
       />
-      <button onClick={addNewGrade}>新增複習進度</button>
-    </div>
+
+      <TextField
+        fullWidth
+        type="number"
+        label="佔比 (%)"
+        variant="outlined"
+        value={newGrade.percent}
+        onChange={(event) =>
+          setNewGrade({ ...newGrade, percent: Number(event.target.value) })
+        }
+        onFocus={(e) => e.target.select()}
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'white' },
+          },
+        }}
+      />
+
+      <Button variant="contained" color="primary" onClick={addNewGrade}>
+        新增成績項目
+      </Button>
+    </Stack>
   );
 }
 

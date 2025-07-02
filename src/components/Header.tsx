@@ -1,5 +1,8 @@
-import { IoMdAddCircleOutline } from 'react-icons/io';
-import { ImCancelCircle } from 'react-icons/im';
+import { Tabs, Tab, Box, Button, Stack } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CancelIcon from '@mui/icons-material/Cancel';
+
+import React, { useState } from 'react';
 
 type Props = {
   editing: string;
@@ -9,80 +12,71 @@ type Props = {
 };
 
 function Header({ editing, setEditing, setShowing, setChosenGrids }: Props) {
+  const [tabValue, setTabValue] = useState(0);
+
+  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+    setChosenGrids([]);
+    setEditing('none');
+    switch (newValue) {
+      case 0:
+        setShowing('table');
+        break;
+      case 1:
+        setShowing('list');
+        break;
+      case 2:
+        setShowing('todo');
+        break;
+    }
+  };
+
   return (
-    <div>
-      <div>
-        <button
-          onClick={() => {
-            setShowing('table');
-            setEditing('none');
-            setChosenGrids([]);
-          }}
-        >
-          Table
-        </button>
-        <button
-          onClick={() => {
-            setShowing('list');
-            setEditing('none');
-            setChosenGrids([]);
-          }}
-        >
-          List
-        </button>
-        <button
-          onClick={() => {
-            setShowing('todo');
-            setEditing('none');
-            setChosenGrids([]);
-          }}
-        >
-          Todo
-        </button>
-      </div>
-      
-      <p>Header</p>
-      <div>
-        <button
+    <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2, color: 'white' }}>
+      <Tabs
+        value={tabValue}
+        onChange={handleTabChange}
+        centered
+        TabIndicatorProps={{ sx: { backgroundColor: 'white' } }}
+        textColor="inherit"
+      >
+        <Tab label="Table" sx={{ flex: 1, color: 'white' }} />
+        <Tab label="List" sx={{ flex: 1, color: 'white' }} />
+        <Tab label="Todo" sx={{ flex: 1, color: 'white' }} />
+      </Tabs>
+
+      <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
+        <Button
+          variant={editing === 'todo' ? 'outlined' : 'contained'}
+          color="primary"
           onClick={() => {
             setEditing(editing === 'todo' ? 'none' : 'todo');
             setShowing('todo');
             setChosenGrids([]);
           }}
+          startIcon={
+            editing === 'todo' ? <CancelIcon /> : <AddCircleOutlineIcon />
+          }
         >
-          {editing === 'todo' ? (
-            <>
-              <ImCancelCircle />
-              <>Cancel</>
-            </>
-          ) : (
-            <>
-              <IoMdAddCircleOutline />
-              Add Todo
-            </>
-          )}
-        </button>
-        <button
+          {editing === 'todo' ? 'Cancel' : 'Add Todo'}
+        </Button>
+
+        <Button
+          variant={editing === 'course' ? 'outlined' : 'contained'}
+          color="secondary"
           onClick={() => {
             setEditing(editing === 'course' ? 'none' : 'course');
             setShowing('table');
             setChosenGrids([]);
           }}
+          startIcon={
+            editing === 'course' ? <CancelIcon /> : <AddCircleOutlineIcon />
+          }
         >
-          {editing === 'course' ? (
-            <>
-              <ImCancelCircle />
-              <>Cancel</>
-            </>
-          ) : (
-            <>
-              <IoMdAddCircleOutline />
-              Add Course
-            </>
-          )}
-        </button>
-      </div>
-    </div>
+          {editing === 'course' ? 'Cancel' : 'Add Course'}
+        </Button>
+      </Stack>
+    </Box>
   );
 }
 

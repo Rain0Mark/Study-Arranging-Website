@@ -34,7 +34,7 @@ function CourseOverview() {
     name: '',
     location: '',
     lecturer: '',
-    color: '#ffffff', //預設白色
+    color: 'transparent',
   });
   const [courseList, setCourseList] = useState<
     {

@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { TextField, Button, Stack } from '@mui/material';
 import {
-  getTomorrowEndOfDayLocal,
   getTodayDateLocal,
+  getTomorrowEndOfDayLocal,
 } from '../../../utils/date';
 
 type Props = {
-  courseName: string;
-  todoList: {
+  todoList: Array<{
     id: string;
     subject: string;
     name: string;
     start: string;
     end: string;
-  }[];
+  }>;
   setTodoList: React.Dispatch<
     React.SetStateAction<
       {
@@ -25,9 +25,10 @@ type Props = {
       }[]
     >
   >;
+  courseName: string;
 };
 
-function TodoInCourseEdit({ courseName, todoList, setTodoList }: Props) {
+function TodoEdit({ todoList, setTodoList, courseName }: Props) {
   const [newTodo, setNewTodo] = useState({
     subject: courseName,
     name: '',
@@ -51,8 +52,8 @@ function TodoInCourseEdit({ courseName, todoList, setTodoList }: Props) {
       const isABeforeB = dayjs(a.end).isBefore(dayjs(b.end));
       return isABeforeB ? -1 : 1;
     });
-    setTodoList(newTodoList);
 
+    setTodoList(newTodoList);
     setNewTodo({
       subject: newTodo.subject,
       name: '',
@@ -60,26 +61,48 @@ function TodoInCourseEdit({ courseName, todoList, setTodoList }: Props) {
       end: getTomorrowEndOfDayLocal(),
     });
   }
+
   return (
-    <div>
-      <input
-        placeholder="輸入名稱"
-        onChange={(event) => {
-          setNewTodo({ ...newTodo, name: event.target.value });
-        }}
+    <Stack spacing={2} sx={{ p: 2, color: 'white' }}>
+      <TextField
+        fullWidth
+        label="名稱"
+        variant="outlined"
         value={newTodo.name}
-      />
-      <input
-        type="datetime-local"
-        placeholder="結束時間"
-        value={newTodo.end}
-        onChange={(event) => {
-          setNewTodo({ ...newTodo, end: event.target.value });
+        onChange={(event) =>
+          setNewTodo({ ...newTodo, name: event.target.value })
+        }
+        InputLabelProps={{ style: { color: 'white' } }}
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
         }}
       />
-      <button onClick={addNewTodo}>新增待辦事項</button>
-    </div>
+
+      <TextField
+        fullWidth
+        label="結束時間"
+        type="datetime-local"
+        InputLabelProps={{ shrink: true, style: { color: 'white' } }}
+        value={newTodo.end}
+        onChange={(event) =>
+          setNewTodo({ ...newTodo, end: event.target.value })
+        }
+        sx={{
+          input: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+          },
+        }}
+      />
+
+      <Button variant="contained" color="primary" onClick={addNewTodo}>
+        新增待辦事項
+      </Button>
+    </Stack>
   );
 }
 
-export default TodoInCourseEdit;
+export default TodoEdit;
