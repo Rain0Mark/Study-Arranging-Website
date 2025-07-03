@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import {
   TextField,
@@ -76,6 +76,18 @@ function TodoEdit({ todoList, setTodoList, courseList }: Props) {
       end: getTomorrowEndOfDayLocal(),
     });
   }
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addNewTodo();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
 
   return (
     <Stack spacing={2} sx={{ p: 2, color: 'white' }}>

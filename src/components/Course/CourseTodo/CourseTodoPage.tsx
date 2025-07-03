@@ -36,7 +36,7 @@ function CourseTodoPage({ course, todoList, setTodoList }: Props) {
   });
 
   return (
-    <Box sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ p: 2 }}>
       {todoListInCourse.length === 0 ? (
         <Typography variant="h3" color="white">
           目前沒有待辦事項

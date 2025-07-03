@@ -49,11 +49,12 @@ function CourseOverview() {
     const saved = localStorage.getItem('courseList');
     return saved ? JSON.parse(saved) : [];
   });
-  const [chosenGrids, setChosenGrids] = useState<number[]>([]);
 
   useEffect(() => {
     localStorage.setItem('courseList', JSON.stringify(courseList));
   }, [courseList]);
+
+  const [chosenGrids, setChosenGrids] = useState<number[]>([]);
 
   return (
     <div>
@@ -91,7 +92,7 @@ function CourseOverview() {
           editing={editing}
         />
       ) : showing === 'list' ? (
-        <ListPage courseList={courseList} />
+        <ListPage courseList={courseList} setCourseList={setCourseList}/>
       ) : showing === 'todo' ? (
         <TodoPage todoList={todoList} setTodoList={setTodoList} />
       ) : null}

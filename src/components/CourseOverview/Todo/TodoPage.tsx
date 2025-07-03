@@ -24,7 +24,7 @@ type Props = {
 
 function TodoPage({ todoList, setTodoList }: Props) {
   return (
-    <Box sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ p: 2 }}>
       {todoList.length === 0 ? (
         <Typography variant="h3" color="white">
           目前沒有待辦事項

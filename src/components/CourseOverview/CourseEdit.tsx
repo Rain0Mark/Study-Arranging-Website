@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { TextField, Button, Stack, InputLabel, Box } from '@mui/material';
 
 type Props = {
@@ -43,6 +44,18 @@ function CourseEdit({
   chosenGrids,
   setChosenGrids,
 }: Props) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addCourse();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
   function clearNewCourseInput() {
     setNewCourse({
       name: '',
@@ -102,9 +115,9 @@ function CourseEdit({
         label="課程名稱"
         variant="outlined"
         value={newCourse.name}
-        onChange={(event) => {
-          setNewCourse({ ...newCourse, name: event.target.value });
-        }}
+        onChange={(event) =>
+          setNewCourse({ ...newCourse, name: event.target.value })
+        }
         InputLabelProps={{ style: { color: 'white' } }}
         sx={{
           input: { color: 'white' },
@@ -119,9 +132,9 @@ function CourseEdit({
         label="課程地點"
         variant="outlined"
         value={newCourse.location}
-        onChange={(event) => {
-          setNewCourse({ ...newCourse, location: event.target.value });
-        }}
+        onChange={(event) =>
+          setNewCourse({ ...newCourse, location: event.target.value })
+        }
         InputLabelProps={{ style: { color: 'white' } }}
         sx={{
           input: { color: 'white' },
@@ -136,9 +149,9 @@ function CourseEdit({
         label="授課老師"
         variant="outlined"
         value={newCourse.lecturer}
-        onChange={(event) => {
-          setNewCourse({ ...newCourse, lecturer: event.target.value });
-        }}
+        onChange={(event) =>
+          setNewCourse({ ...newCourse, lecturer: event.target.value })
+        }
         InputLabelProps={{ style: { color: 'white' } }}
         sx={{
           input: { color: 'white' },
@@ -153,9 +166,9 @@ function CourseEdit({
         <input
           type="color"
           value={newCourse.color}
-          onChange={(event) => {
-            setNewCourse({ ...newCourse, color: event.target.value });
-          }}
+          onChange={(event) =>
+            setNewCourse({ ...newCourse, color: event.target.value })
+          }
         />
       </div>
 
