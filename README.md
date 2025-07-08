@@ -52,3 +52,11 @@ export default tseslint.config({
   },
 })
 ```
+
+## Details about this website
+
+1. There is no back end so users won't be requeseted to sign in and the data can't be transport between different devices.
+2. This website is currently for computer users. If there is any issue when viewed by cellphone or other small window device, please upload the issue.
+3. The website is aviliable on the network. It is runned by NTU CSIE personal website service.
+4. I want to develop the app version in the future by react native.
+5. Almost all the Materail UI codes is completed by ChatGPT.
